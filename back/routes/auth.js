@@ -8,20 +8,31 @@ import bcrypt from "bcrypt";
 //Register
 auth.post("/register", async (req, res) => {
 	try {
+		const usernameExist = await UserModel.findOne({
+			username: req.body.username,
+		});
+		const emailExist = await UserModel.findOne({ email: req.body.email });
+		if (usernameExist) {
+			return res.status(404).json("Username already exist");
+		}
+		if (emailExist) {
+			return res.status(404).json("Email already exist");
+		}
+
 		//generate hashedPassword
 		const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
 		//create new user with hasheddPassword
+
 		const newUser = new UserModel({
 			username: req.body.username,
 			email: req.body.email,
 			password: hashedPassword,
 		});
 		const user = await newUser.save();
-		res.json(user);
+		res.status(200).json("User account created");
 	} catch (err) {
-		(err.code == 11000 && res.sendStatus(400).json("user already exist")) ||
-			res.json(err);
+		return res.sendStatus(err).json("user already exist");
 	}
 });
 
@@ -30,33 +41,36 @@ auth.post("/login", async (req, res) => {
 	try {
 		//find user by email in mongoDB
 		const user = await UserModel.findOne({ email: req.body.email });
+		if (!user) {
+			return res.status(404).json("email not found");
+		}
 		//compare password with hashedPassword
 		const password = await bcrypt.compare(req.body.password, user.password);
-		if (!user) {
-			return res.status(401).json("user not found");
-		}
 		if (!password) {
-			return res.status(401).json("bad password");
+			return res.status(404).json("bad password");
 		}
 		//JWT
-		const token = jwt.sign(
-			{ username: req.body.username },
-			process.env.JWT_SECRET,
-			(err, token) => {
-				res.json({ token });
-			}
-		);
+		if (user.password && user.email) {
+			const token = jwt.sign(
+				{ userId: user._id },
+				process.env.JWT_SECRET,
+				(err, token) => {
+					res.status(200).send({ token, user: user._id });
+				}
+			);
+		}
 	} catch (err) {
 		res.json(err);
 	}
 });
 //Middleware for JWT
-const verifyToken = (req, res, next) => {
-	const authHeader = req.headers["authorization"];
-	const token = authHeader && authHeader.split(" ")[1];
-	if (token == null) return res.sendStatus(401);
-
+const verifyToken = async (req, res, next) => {
 	try {
+		const authHeader = await req.headers["authorization"];
+		const token = (await authHeader) && authHeader.split(" ")[1];
+
+		if (token == null) return res.sendStatus(401);
+
 		const decodedToken = jwt.verify(
 			token,
 			process.env.JWT_SECRET,
@@ -71,8 +85,12 @@ const verifyToken = (req, res, next) => {
 	}
 };
 
-auth.get("/verified", verifyToken, (req, res) => {
-	res.json(req.user.username);
+auth.get("/users/:userId", verifyToken, (req, res) => {
+	if (req.user.userId === req.params.userId) {
+		return res.status(200).send("heheh");
+	} else {
+		return res.status(404);
+	}
 });
 
 export default auth;

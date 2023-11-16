@@ -20,10 +20,10 @@ router.delete("/:id", async (req, res) => {
 router.get("/:id", async (req, res) => {
 	try {
 		const user = await UserModel.findById(req.params.id);
-		const { poassword, ...other } = user._doc;
+		const { password, ...other } = user._doc;
 		res.status(200).json(other);
 	} catch (err) {
-		res.send(500).json(err);
+		res.status(500).json(err);
 	}
 });
 
@@ -35,7 +35,7 @@ router.put("/:id/follow", async (req, res) => {
 			const currentUser = await UserModel.findById(req.body.id);
 			if (!user.followers.includes(req.body.id)) {
 				await user.updateOne({ $push: { followers: req.body.id } });
-				await currentUser.updateOne({ $push: { followins: req.body.id } });
+				await currentUser.updateOne({ $push: { followins: req.params.id } });
 				res.status(200).json("User has been followed");
 			} else {
 				res.status(403).json("You allready follow this user");

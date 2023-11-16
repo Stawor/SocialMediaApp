@@ -1,36 +1,39 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useContext } from "react";
+import { UserContext } from "../contexts/user-context";
+import { PostContext } from "../contexts/post-context";
+import Popove1 from "./ui/Popover";
+import Like from "./ui/Like";
+import UserNameApi from "./UserNameApi";
 
-export default function Posts({}) {
-	const [posts, setPosts] = useState([]);
-	const userId = "654698b4ede286e913b8a540";
+export default function Posts() {
+	const { user } = useContext(UserContext);
+	const { posts } = useContext(PostContext);
 
-	useEffect(() => {
-		async function getPosts() {
-			{
-				const response = await axios.get(
-					`http://localhost:3000/api/posts/timeline/${userId}`
-				);
-				setPosts(response.data);
-				console.log(posts);
-			}
+	function DisplayPosts() {
+		if (!posts) {
+			return <div>Loading...</div>;
 		}
-		getPosts();
-		// async function mappedPosts() {
-		// 	posts.map((post) => {
-		// 		return;
-		// 	});
-		// }
-	}, []);
-	return (
-		<>
-			{posts.map((post) => (
-				<div key={post._id} className="h-36 border border-black ">
-					<div>{post.userId}</div>
-					<div>{post.desc}</div>
-					<button>Like</button>
+		return posts.map((post) => (
+			<div
+				key={post._id}
+				id="post"
+				className="border flex flex-col p-4 gap-8 text-lg rounded-lg"
+			>
+				<div className=" flex gap-2 items-center text-2xl justify-between relative">
+					<UserNameApi userId={user._id} />
+					<Popove1 postId={post._id} />
 				</div>
-			))}
-		</>
+				<div className="bg-white">{post.desc}</div>
+				<div className="border-t">
+					<Like post={post} />
+				</div>
+			</div>
+		));
+	}
+
+	return (
+		<div className=" max-w-2xl flex flex-col-reverse gap-8 lg:w-4/5 w-full ">
+			<DisplayPosts />
+		</div>
 	);
 }

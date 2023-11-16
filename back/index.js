@@ -7,6 +7,7 @@ import morgan from "morgan";
 import router from "./routes/users.js";
 import auth from "./routes/auth.js";
 import posts from "./routes/posts.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 const port = 3000;
