@@ -26,7 +26,7 @@ export default function UserPosts() {
 	useEffect(() => {
 		getPosts();
 	}, []);
-	console.log(userId);
+
 	if (!posts) {
 		return <div>Loading...</div>;
 	}

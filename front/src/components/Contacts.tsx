@@ -25,7 +25,6 @@ export default function Friends() {
 				{ headers: { Authorization: `Bearer ${TokenCookie}` } }
 			);
 			setFriends(response.data.followins);
-			console.log(response);
 		}
 	};
 

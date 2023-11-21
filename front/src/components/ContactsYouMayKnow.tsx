@@ -26,10 +26,9 @@ export default function FriendsSuggest() {
 				}
 			);
 			setContacts(response.data.userInfo);
-			console.log(response.data.userInfo);
 		}
 	};
-	console.log(user);
+
 	function DisplayUsers() {
 		return (
 			<div>

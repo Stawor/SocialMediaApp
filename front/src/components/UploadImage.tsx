@@ -27,11 +27,6 @@ const ImageUpload = () => {
 					},
 				}
 			);
-			if (response.status === 200) {
-				console.log("Image uploaded successfully!");
-			} else {
-				console.error("Error uploading image:", response.data);
-			}
 		} catch (error) {
 			console.error("Error uploading image:", error);
 		}

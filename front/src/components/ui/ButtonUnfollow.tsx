@@ -11,7 +11,6 @@ export default function ButtonUnfollow({ userId }) {
 		});
 		window.location.reload();
 	};
-	console.log(userId);
-	console.log(user._id);
+
 	return <button onClick={handleClick}>Unfollow</button>;
 }
