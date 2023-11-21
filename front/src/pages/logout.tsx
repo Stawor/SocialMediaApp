@@ -5,9 +5,9 @@ const cookies = new Cookies();
 
 export default function Logout() {
 	const navigate = useNavigate();
-	const handleLogOut = () => {
-		cookies.remove("token");
-		cookies.remove("userId");
+	const handleLogOut = async () => {
+		cookies.remove("token", { path: "/" });
+		cookies.remove("userId", { path: "/" });
 		navigate("/login");
 	};
 	return (

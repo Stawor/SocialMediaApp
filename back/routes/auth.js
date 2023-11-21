@@ -42,12 +42,12 @@ auth.post("/login", async (req, res) => {
 		//find user by email in mongoDB
 		const user = await UserModel.findOne({ email: req.body.email });
 		if (!user) {
-			return res.status(404).json("email not found");
+			return res.status(404).json("Email not found!");
 		}
 		//compare password with hashedPassword
 		const password = await bcrypt.compare(req.body.password, user.password);
 		if (!password) {
-			return res.status(404).json("bad password");
+			return res.status(404).json("Password is invalid");
 		}
 		//JWT
 		if (user.password && user.email) {
@@ -58,13 +58,14 @@ auth.post("/login", async (req, res) => {
 					res.status(200).send({ token, user: user._id });
 				}
 			);
+			console.log(token);
 		}
 	} catch (err) {
 		res.json(err);
 	}
 });
 //Middleware for JWT
-const verifyToken = async (req, res, next) => {
+export const verifyToken = async (req, res, next) => {
 	try {
 		const authHeader = await req.headers["authorization"];
 		const token = (await authHeader) && authHeader.split(" ")[1];
@@ -84,13 +85,5 @@ const verifyToken = async (req, res, next) => {
 		res.status(401).json({ message: "Invalid token" });
 	}
 };
-
-auth.get("/users/:userId", verifyToken, (req, res) => {
-	if (req.user.userId === req.params.userId) {
-		return res.status(200).send("heheh");
-	} else {
-		return res.status(404);
-	}
-});
 
 export default auth;

@@ -7,12 +7,14 @@ import morgan from "morgan";
 import router from "./routes/users.js";
 import auth from "./routes/auth.js";
 import posts from "./routes/posts.js";
-import cookieParser from "cookie-parser";
+import multer from "multer";
+import path from "express";
 
 const app = express();
 const port = 3000;
 
 mongoose.connect(process.env.MONGO_URL);
+
 
 //middleware
 app.use(express.json());
@@ -24,8 +26,20 @@ app.use("/api/users", router);
 app.use("/api/auth", auth);
 app.use("/api/posts", posts);
 
-app.get("/", (req, res) => {
-	res.send("hello");
+const storage = multer.diskStorage({
+	destination: function (req, file, cb) {
+		return cb(null, "./public/Images");
+	},
+	filename: function (req, file, cb) {
+		return cb(null, `${Date.now()}_${file.originalname}`);
+	},
+});
+
+const upload = multer({ storage });
+
+app.post("/upload", upload.single("file"), (req, res) => {
+	console.log(req.body);
+	console.log(req.file);
 });
 
 app.listen(port, () => {

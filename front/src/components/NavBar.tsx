@@ -1,7 +1,5 @@
-
-import Logout from "../pages/logout";
+import Logout from "../pages/Logout";
 import { Link } from "react-router-dom";
-
 
 export default function TopBar() {
 	return (

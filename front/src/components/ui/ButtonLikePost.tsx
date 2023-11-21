@@ -3,7 +3,7 @@ import { AiOutlineLike } from "react-icons/ai";
 
 import axios from "axios";
 
-export default function Like({ post }) {
+export default function ButtonLikePosts({ post }) {
 	const [liked, setLiked] = useState(post.likes.length);
 
 	const handleLikeClick = async () => {

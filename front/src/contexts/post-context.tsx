@@ -2,28 +2,28 @@ import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
 import { UserContext } from "./user-context";
 import Cookies from "universal-cookie";
-
 const cookies = new Cookies();
-export const PostContext = createContext();
+
+export const PostContext = createContext(false);
 
 export const PostContextProvider = ({ children }) => {
+	const tokenCookie = cookies.get("token");
 	const { user } = useContext(UserContext);
 	const [posts, setPosts] = useState("");
 
 	async function getPosts() {
 		if (user) {
 			const response = await axios.get(
-				`http://localhost:3000/api/posts/timeline/${user._id}`
+				`http://localhost:3000/api/posts/timeline/${user._id}`,
+				{ headers: { Authorization: `Bearer ${tokenCookie}` } }
 			);
 			setPosts(response.data.userPosts);
-			console.log(response);
 		}
 	}
 	useEffect(() => {
 		getPosts();
 	}, [user]);
 
-	console.log(posts);
 	return (
 		<PostContext.Provider value={{ posts, setPosts }}>
 			{children}

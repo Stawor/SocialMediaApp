@@ -9,6 +9,7 @@ const cookies = new Cookies();
 
 export default function Login() {
 	const { user, setUser } = useContext(UserContext);
+	const [error, setError] = useState("");
 	const navigate = useNavigate();
 	const [formData, setFormData] = useState({
 		username: "",
@@ -26,27 +27,32 @@ export default function Login() {
 					password: formData.password,
 				}
 			);
-			//set Cookie
+
+			// if (cookies.get("userId")) {
+			// 	cookies.remove("userId");
+			// }
 			cookies.set("token", response.data.token);
 			cookies.set("userId", response.data.user);
 			setUser(true);
 
-			//set userId using context
 			if (cookies.get("token")) {
 				navigate("/");
 			}
-		} catch (error) {}
+		} catch (error) {
+			setError(error.response.data);
+		}
 	};
 
 	return (
-		<div className=" flex  w-full  justify-center ">
-			<div className=" flex mt-36">
+		<div className=" flex w-full  justify-center">
+			<div id="post" className=" flex mt-36">
 				<form onSubmit={handleSubmit} className=" flex justify-center">
 					<div className=" flex flex-col gap-10 border w-80 rounded-lg">
 						<div>
 							<h1 className="text-4xl m-5 flex justify-center items-center">
 								Log in
 							</h1>
+							<div className="text-red-600 text-2xl text-center">{error}</div>
 						</div>
 						<label
 							htmlFor="username"

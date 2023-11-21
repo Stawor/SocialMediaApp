@@ -2,6 +2,7 @@ import express from "express";
 const router = express.Router();
 import PostModel from "../models/Posts.js";
 import UserModel from "../models/User.js";
+import { verifyToken } from "./auth.js";
 
 //create a post
 router.post("/", async (req, res) => {
@@ -20,7 +21,7 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
 	try {
-		const post = PostModel.findById(req.params.id);
+		const post = await PostModel.findById(req.params.id);
 		if (post.userId === req.body.id) {
 			await post.updateOne({ $set: req.body });
 			res.status(200).json("Post have been updated");
@@ -33,10 +34,10 @@ router.put("/:id", async (req, res) => {
 });
 
 //delete a post
-router.delete("/:id", async (req, res) => {
+router.delete("/:id/:user", async (req, res) => {
 	try {
-		const post = PostModel.findById(req.params.id);
-		if (post.userId === req.body.id) {
+		const post = await PostModel.findById(req.params.id);
+		if (post.userId === req.params.user) {
 			await post.deleteOne();
 			res.status(200).json("Post have been deleted");
 		} else {
@@ -63,7 +64,7 @@ router.put("/:id/like", async (req, res) => {
 });
 
 // get post
-router.get("/:id", async (req, res) => {
+router.get("/:id", verifyToken, async (req, res) => {
 	try {
 		const post = await PostModel.findById(req.params.id);
 		res.status(200).json("");
@@ -72,7 +73,7 @@ router.get("/:id", async (req, res) => {
 	}
 });
 
-router.get("/timeline/:id", async (req, res) => {
+router.get("/timeline/:id", verifyToken, async (req, res) => {
 	try {
 		const user = await UserModel.findById(req.params.id);
 		const userPosts = await PostModel.find({ userId: user._id });
@@ -82,7 +83,7 @@ router.get("/timeline/:id", async (req, res) => {
 	}
 });
 // get timeline posts
-router.get("/timeline/all/:id", async (req, res) => {
+router.get("/timeline/all/:id", verifyToken, async (req, res) => {
 	try {
 		const user = await UserModel.findById(req.params.id);
 		const userPosts = await PostModel.find({ userId: user._id });

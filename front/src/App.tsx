@@ -8,14 +8,12 @@ import NavBar from "./components/NavBar";
 import SideBar from "./components/LeftBar";
 import RightBar from "./components/RightBar";
 import Home from "./pages/Home";
-import ErrorPage from "./pages/error-page";
-import Register from "./pages/register";
-import Verified from "./pages/verified";
-import Profile from "./pages/Profile";
+import ErrorPage from "./pages/Error-page";
+import Register from "./pages/Register";
 import Cookies from "universal-cookie";
-import Login from "./pages/login";
-import Posts from "./pages/Posts";
-import LoginApi from "./apis/LoginApi";
+import Login from "./pages/Login";
+
+import UserProfile from "./pages/UserProfile";
 
 function App() {
 	const Layout = () => {
@@ -23,7 +21,7 @@ function App() {
 			<div>
 				<NavBar />
 				<div className=" flex justify-center items-center">
-					<div className="flex w-full">
+					<div className="flex w-full justify-center gap-10">
 						<SideBar />
 						<Outlet />
 						<RightBar />
@@ -57,8 +55,12 @@ function App() {
 					element: <Home />,
 				},
 				{
-					path: "/profile",
-					element: <Profile />,
+					path: "/profile/:userId",
+					element: <UserProfile />,
+				},
+				{
+					path: "/feed",
+					element: <Home />,
 				},
 			],
 		},

@@ -1,9 +1,9 @@
 import * as React from "react";
 import Popover from "@mui/material/Popover";
 import { HiDotsVertical } from "react-icons/hi";
-import Delete from "./Delete";
+import ButtonFollowUser from "./ButtonFollowUser";
 
-export default function Popove1({ postId }) {
+export default function FriendPopover({ userId }) {
 	const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
 		null
 	);
@@ -39,8 +39,7 @@ export default function Popove1({ postId }) {
 				}}
 			>
 				<div className="flex flex-col px-10 text-lg">
-					<button>Change</button>
-					<Delete postId={postId} />
+					<ButtonFollowUser userId={userId} />
 				</div>
 			</Popover>
 		</div>

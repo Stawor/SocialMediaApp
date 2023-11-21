@@ -34,17 +34,12 @@ const userSchema = new Schema(
 			type: String,
 			default: "",
 		},
-		isAdmin: {
-			type: Boolean,
-			default: false,
-		},
+
 		followers: {
 			type: Array,
-			default: false,
 		},
 		followins: {
 			type: Array,
-			default: false,
 		},
 	},
 	{ timestamps: true }
