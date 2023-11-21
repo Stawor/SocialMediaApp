@@ -13,9 +13,8 @@ import path from "express";
 const app = express();
 const port = 3000;
 
-mongoose.set("strictQuery", false);
 mongoose.connect(process.env.MONGO_URL);
-
+const mongoDB = process.env.MONGO_URL;
 
 //middleware
 app.use(express.json());
