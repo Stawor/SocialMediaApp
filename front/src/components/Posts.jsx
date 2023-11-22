@@ -3,10 +3,12 @@ import PostDisplay from "./PostDisplay";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Cookies from "universal-cookie";
+import SharePosts from "./SharePosts";
 const Cookie = new Cookies();
 
 export default function Posts() {
 	const tokenCookie = Cookie.get("token");
+
 	const [posts, setPosts] = useState("");
 	let { userId } = useParams();
 
@@ -21,7 +23,7 @@ export default function Posts() {
 	}
 	useEffect(() => {
 		getPosts();
-	}, [posts]);
+	}, [posts, SharePosts]);
 
 	return (
 		<>

@@ -15,7 +15,6 @@ import { app } from "../utils/firebase";
 
 export default function SharePosts() {
 	const storage = getStorage(app);
-
 	const { user } = useContext(UserContext);
 	const [desc, setDesc] = useState("");
 	const [file, setFile] = useState(null);
@@ -81,7 +80,8 @@ export default function SharePosts() {
 			userId: user._id,
 			desc: desc,
 			img: downloadUrl,
-		});
+    });
+    
 		setDesc("");
 	};
 
