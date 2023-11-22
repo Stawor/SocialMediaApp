@@ -11,7 +11,7 @@ const Cookie = new Cookies();
 
 export default function Friends() {
 	const TokenCookie = Cookie.get("token");
-	const [friends, setFriends] = useState();
+	const [friends, setFriends] = useState(null);
 	const { user } = useContext(UserContext);
 
 	useEffect(() => {

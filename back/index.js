@@ -12,19 +12,12 @@ const app = express();
 const port = 3000;
 
 mongoose.connect(process.env.MONGO_URL);
-const mongoDB = process.env.MONGO_URL;
 
 //middleware
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
-app.use(
-	cors({
-		origin: ["https://social-media-app-iict.vercel.app"],
-		methods: ["POST", "GET", "PUT", "DELETE"],
-		credentials: true,
-	})
-);
+app.use(cors());
 
 app.get("/", (req, res) => {
 	res.send("Hello World!");

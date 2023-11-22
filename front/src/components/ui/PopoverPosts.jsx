@@ -1,12 +1,10 @@
-import * as React from "react";
 import Popover from "@mui/material/Popover";
 import { HiDotsVertical } from "react-icons/hi";
 import Delete from "./ButtonDeletePost";
+import { useState } from "react";
 
 export default function UserPopover({ postId }) {
-	const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
-		null
-	);
+	const [anchorEl, setAnchorEl] = useState(null);
 
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);

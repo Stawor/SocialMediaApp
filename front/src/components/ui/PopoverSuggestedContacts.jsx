@@ -1,12 +1,10 @@
-import * as React from "react";
+import { useState } from "react";
 import Popover from "@mui/material/Popover";
 import { HiDotsVertical } from "react-icons/hi";
 import ButtonFollowUser from "./ButtonFollowUser";
 
 export default function FriendPopover({ userId }) {
-	const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
-		null
-	);
+	const [anchorEl, setAnchorEl] = useState(null);
 
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
