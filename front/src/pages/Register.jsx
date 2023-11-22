@@ -14,7 +14,7 @@ export default function Register() {
 		e.preventDefault();
 		try {
 			const response = await axios.post(
-				"http://localhost:3000/api/auth/register",
+				`${import.meta.env.URL}api/auth/register`,
 				{
 					username: formData.username,
 					email: formData.email,

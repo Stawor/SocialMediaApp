@@ -13,7 +13,7 @@ export const UserContextProvider = ({ children }) => {
 	const getData = async () => {
 		if (cookie) {
 			const response = await axios.get(
-				`http://localhost:3000/api/users/${cookie}`,
+				`${import.meta.env.URL}api/users/${cookie}`,
 				{ headers: { Authorization: `Bearer ${tokenCookie}` } }
 			);
 			setUser(response.data);

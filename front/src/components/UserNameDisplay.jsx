@@ -12,7 +12,7 @@ export default function UserNameApi({ userId, size, style, divStyle }) {
 		if (userId) {
 			const getData = async () => {
 				const response = await axios.get(
-					`http://localhost:3000/api/users/${userId}`,
+					`${import.meta.env.URL}api/users/${userId}`,
 					{ headers: { Authorization: `Bearer ${TokenCookie}` } }
 				);
 				setUsername(response.data.username);

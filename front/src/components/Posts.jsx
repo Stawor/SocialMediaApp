@@ -13,7 +13,7 @@ export default function Posts() {
 	async function getPosts() {
 		if (posts) {
 			const response = await axios.get(
-				`http://localhost:3000/api/posts/timeline/${user._id}`,
+				`${import.meta.env.URL}posts/timeline/${user._id}`,
 				{ headers: { Authorization: `Bearer ${tokenCookie}` } }
 			);
 			setPosts(response.data.userPosts);

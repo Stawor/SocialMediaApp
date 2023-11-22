@@ -6,7 +6,7 @@ export default function ButtonUnfollow({ userId }) {
 	const { user } = useContext(UserContext);
 
 	const handleClick = () => {
-		axios.put(`http://localhost:3000/api/users/${userId}/unfollow`, {
+		axios.put(`${import.meta.env.URL}api/users/${userId}/unfollow`, {
 			id: user._id,
 		});
 		window.location.reload();

@@ -8,7 +8,7 @@ export default function ButtonLikePosts({ post }) {
 
 	const handleLikeClick = async () => {
 		const response = await axios.put(
-			`http://localhost:3000/api/posts/${post._id}/like`,
+			`${import.meta.env.URL}api/posts/${post._id}/like`,
 			{
 				userId: "6548d670de397e939b61416d",
 			}

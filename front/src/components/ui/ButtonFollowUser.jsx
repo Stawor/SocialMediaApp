@@ -6,7 +6,7 @@ export default function ButtonFollowUser({ userId }) {
 	const { user } = useContext(UserContext);
 
 	const handleClick = () => {
-		axios.put(`http://localhost:3000/api/users/${userId}/follow`, {
+		axios.put(`${import.meta.env.URL}api/users/${userId}/follow`, {
 			id: user._id,
 		});
 		window.location.reload();

@@ -19,7 +19,7 @@ const ImageUpload = () => {
 
 		try {
 			const response = await axios.post(
-				"http://localhost:3000/api/upload",
+				`${import.meta.env.URL}api/upload`,
 				formData,
 				{
 					headers: {

@@ -20,7 +20,7 @@ export default function Feed() {
 	async function getFeed() {
 		if (user) {
 			const response = await axios.get(
-				`https://socialmediaapp-ydzs.onrender.com/posts/timeline/all/${user._id}`,
+				`${import.meta.env.URL}api/posts/timeline/all/${user._id}`,
 				{ headers: { Authorization: `Bearer ${TokenCookie}` } }
 			);
 			setPosts(

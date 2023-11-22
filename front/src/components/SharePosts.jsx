@@ -76,7 +76,7 @@ export default function SharePosts() {
 	}, [file]);
 
 	const handleSubmit = async (e) => {
-		await axios.post("http://localhost:3000/api/posts", {
+		await axios.post(`${import.meta.env.URL}api/posts`, {
 			userId: user._id,
 			desc: desc,
 			img: downloadUrl,

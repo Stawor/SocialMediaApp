@@ -10,9 +10,7 @@ export default function Delete({ postId }) {
 
 	const handleClick = async () => {
 		try {
-			await axios.delete(
-				`http://localhost:3000/api/posts/${postId}/${user._id}`
-			);
+			await axios.delete(`${import.meta.env.URL}posts/${postId}/${user._id}`);
 			window.location.reload();
 		} catch (err) {
 			setError(err.response.data);

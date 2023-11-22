@@ -14,7 +14,7 @@ export const PostContextProvider = ({ children }) => {
 	async function getPosts() {
 		if (user) {
 			const response = await axios.get(
-				`http://localhost:3000/api/posts/timeline/${user._id}`,
+				`${import.meta.env.URL}api/posts/timeline/${user._id}`,
 				{ headers: { Authorization: `Bearer ${tokenCookie}` } }
 			);
 			setPosts(response.data.userPosts);

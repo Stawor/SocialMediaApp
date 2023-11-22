@@ -19,7 +19,7 @@ export default function FriendsSuggest() {
 	const getData = async () => {
 		if (user) {
 			const response = await axios.get(
-				`http://localhost:3000/api/users/all/${user._id}`,
+				`${import.meta.env.URL}api/users/all/${user._id}`,
 				{
 					id: user._id,
 					headers: { Authorization: `Bearer ${TokenCookie}` },
