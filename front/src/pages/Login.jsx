@@ -20,7 +20,7 @@ export default function Login() {
 		e.preventDefault();
 		try {
 			const response = await axios.post(
-				`${import.meta.env.URL}/api/auth/login`,
+				`https://socialmediaapp-ydzs.onrender.com/api/auth/login`,
 				{
 					username: formData.username,
 					email: formData.email,
