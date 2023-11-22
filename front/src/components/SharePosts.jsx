@@ -75,13 +75,14 @@ export default function SharePosts() {
 	}, [file]);
 
 	const handleSubmit = async (e) => {
+		e.preventDefault();
 		try {
 			await axios.post(`https://socialmediaapp-ydzs.onrender.com/api/posts`, {
 				userId: user._id,
 				desc: desc,
 				img: downloadUrl,
 			});
-
+			window.location.reload();
 			setDesc("");
 		} catch (err) {
 			console.log(err);
