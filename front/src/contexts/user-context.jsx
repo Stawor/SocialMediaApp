@@ -13,7 +13,7 @@ export const UserContextProvider = ({ children }) => {
 	const getData = async () => {
 		if (cookie) {
 			const response = await axios.get(
-				`${import.meta.env.URL}api/users/${cookie}`,
+				`https://socialmediaapp-ydzs.onrender.com/api/users/${cookie}`,
 				{ headers: { Authorization: `Bearer ${tokenCookie}` } }
 			);
 			setUser(response.data);

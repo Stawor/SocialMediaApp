@@ -19,7 +19,7 @@ export default function FriendsSuggest() {
 	const getData = async () => {
 		if (user) {
 			const response = await axios.get(
-				`${import.meta.env.URL}api/users/all/${user._id}`,
+				`https://socialmediaapp-ydzs.onrender.com/api/users/all/${user._id}`,
 				{
 					id: user._id,
 					headers: { Authorization: `Bearer ${TokenCookie}` },

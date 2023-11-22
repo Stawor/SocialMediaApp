@@ -76,7 +76,7 @@ export default function SharePosts() {
 	}, [file]);
 
 	const handleSubmit = async (e) => {
-		await axios.post(`${import.meta.env.URL}api/posts`, {
+		await axios.post(`https://socialmediaapp-ydzs.onrender.com/api/posts`, {
 			userId: user._id,
 			desc: desc,
 			img: downloadUrl,

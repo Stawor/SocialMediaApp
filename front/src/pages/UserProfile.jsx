@@ -17,7 +17,7 @@ export default function UserPosts() {
 
 	async function getPosts() {
 		const response = await axios.get(
-			`${import.meta.env.URL}api/posts/timeline/${userId}`,
+			`https://socialmediaapp-ydzs.onrender.com/api/posts/timeline/${userId}`,
 			{ headers: { authorization: `Bearer ${TokenCookie}` } }
 		);
 		setPosts(response.data.userPosts);

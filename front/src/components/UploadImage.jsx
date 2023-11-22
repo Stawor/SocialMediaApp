@@ -19,7 +19,7 @@ const ImageUpload = () => {
 
 		try {
 			const response = await axios.post(
-				`${import.meta.env.URL}api/upload`,
+				`https://socialmediaapp-ydzs.onrender.com/api/upload`,
 				formData,
 				{
 					headers: {

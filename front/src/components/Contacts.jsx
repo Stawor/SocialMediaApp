@@ -21,7 +21,7 @@ export default function Friends() {
 	const getData = async () => {
 		if (user) {
 			const response = await axios.get(
-				`${import.meta.env.URL}api/users/followers/${user._id}`,
+				`https://socialmediaapp-ydzs.onrender.com/api/users/followers/${user._id}`,
 				{ headers: { Authorization: `Bearer ${TokenCookie}` } }
 			);
 			setFriends(response.data.followins);

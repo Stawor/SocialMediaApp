@@ -6,9 +6,12 @@ export default function ButtonFollowUser({ userId }) {
 	const { user } = useContext(UserContext);
 
 	const handleClick = () => {
-		axios.put(`${import.meta.env.URL}api/users/${userId}/follow`, {
-			id: user._id,
-		});
+		axios.put(
+			`https://socialmediaapp-ydzs.onrender.com/api/users/${userId}/follow`,
+			{
+				id: user._id,
+			}
+		);
 		window.location.reload();
 	};
 

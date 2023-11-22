@@ -14,7 +14,7 @@ export default function Register() {
 		e.preventDefault();
 		try {
 			const response = await axios.post(
-				`${import.meta.env.URL}api/auth/register`,
+				`https://socialmediaapp-ydzs.onrender.com/api/auth/register`,
 				{
 					username: formData.username,
 					email: formData.email,
