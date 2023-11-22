@@ -11,7 +11,7 @@ export default function Delete({ postId }) {
 	const handleClick = async () => {
 		try {
 			await axios.delete(
-				`https://socialmediaapp-ydzs.onrender.com/posts/${postId}/${user._id}`
+				`https://socialmediaapp-ydzs.onrender.com/api/posts/${postId}/${user._id}`
 			);
 			window.location.reload();
 		} catch (err) {
