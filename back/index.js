@@ -14,10 +14,7 @@ const port = 3000;
 mongoose.set("strictQuery", false);
 
 const mongoDB = process.env.MONGO_URL;
-db.on("error", console.error.bind(console, "connection error: "));
-db.once("open", function () {
-	console.log("Connected successfully");
-});
+
 main().catch((err) => console.log(err));
 async function main() {
 	await mongoose.connect(mongoDB);
