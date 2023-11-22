@@ -11,12 +11,17 @@ import posts from "./routes/posts.js";
 const app = express();
 const port = 3000;
 
-const db = mongoose.connect(process.env.MONGO_URL);
+mongoose.set("strictQuery", false);
+
+const mongoDB = process.env.MONGO_URL;
 db.on("error", console.error.bind(console, "connection error: "));
 db.once("open", function () {
 	console.log("Connected successfully");
 });
-
+main().catch((err) => console.log(err));
+async function main() {
+	await mongoose.connect(mongoDB);
+}
 //middleware
 app.use(express.json());
 app.use(helmet());
