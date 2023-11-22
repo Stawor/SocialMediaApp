@@ -12,7 +12,7 @@ export default function ButtonFollowUser({ userId }) {
 				id: user._id,
 			}
 		);
-		window.location.reload();
+		// window.location.reload();
 	};
 
 	return <button onClick={handleClick}>Follow</button>;
