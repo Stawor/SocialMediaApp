@@ -11,7 +11,11 @@ import posts from "./routes/posts.js";
 const app = express();
 const port = 3000;
 
-mongoose.connect(process.env.MONGO_URL);
+const db = mongoose.connect(process.env.MONGO_URL);
+db.on("error", console.error.bind(console, "connection error: "));
+db.once("open", function () {
+	console.log("Connected successfully");
+});
 
 //middleware
 app.use(express.json());
