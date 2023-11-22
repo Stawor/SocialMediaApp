@@ -23,7 +23,7 @@ export default function Posts() {
 	}
 	useEffect(() => {
 		getPosts();
-	}, [posts, SharePosts]);
+	}, [posts]);
 
 	return (
 		<>

@@ -75,14 +75,17 @@ export default function SharePosts() {
 	}, [file]);
 
 	const handleSubmit = async (e) => {
-		e.preventDefault();
-		await axios.post(`https://socialmediaapp-ydzs.onrender.com/api/posts`, {
-			userId: user._id,
-			desc: desc,
-			img: downloadUrl,
-    });
-    
-		setDesc("");
+		try {
+			await axios.post(`https://socialmediaapp-ydzs.onrender.com/api/posts`, {
+				userId: user._id,
+				desc: desc,
+				img: downloadUrl,
+			});
+
+			setDesc("");
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	return (
