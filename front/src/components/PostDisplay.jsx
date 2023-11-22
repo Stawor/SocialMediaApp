@@ -4,7 +4,7 @@ import UserPopover from "./ui/PopoverPosts";
 import Like from "./ui/ButtonLikePost";
 import { UserContext } from "../contexts/user-context";
 
-export default function PostDisplay({ posts }: any[]) {
+export default function PostDisplay({ posts }) {
 	const { user } = useContext(UserContext);
 	console.log(posts);
 	return (

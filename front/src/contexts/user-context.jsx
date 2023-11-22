@@ -1,9 +1,6 @@
 import { createContext, useEffect, useState } from "react";
-import UserApi from "../components/UserNameDisplay";
 import Cookies from "universal-cookie";
 import axios from "axios";
-import UserData from "../components/UserData";
-import LoginApi from "../apis/LoginApi";
 
 export const UserContext = createContext(false);
 const cookies = new Cookies();

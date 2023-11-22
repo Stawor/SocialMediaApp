@@ -8,7 +8,7 @@ export default function UserPopover({ postId }) {
 		null
 	);
 
-	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
 

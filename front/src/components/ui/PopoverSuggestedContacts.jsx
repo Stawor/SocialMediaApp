@@ -1,14 +1,14 @@
 import * as React from "react";
 import Popover from "@mui/material/Popover";
 import { HiDotsVertical } from "react-icons/hi";
-import Unfollow from "./ButtonUnfollow";
+import ButtonFollowUser from "./ButtonFollowUser";
 
-export default function PopoverContacts({ postId }) {
+export default function FriendPopover({ userId }) {
 	const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
 		null
 	);
 
-	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
 
@@ -39,7 +39,7 @@ export default function PopoverContacts({ postId }) {
 				}}
 			>
 				<div className="flex flex-col px-10 text-lg">
-					<Unfollow userId={postId} />
+					<ButtonFollowUser userId={userId} />
 				</div>
 			</Popover>
 		</div>
