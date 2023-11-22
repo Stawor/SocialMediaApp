@@ -20,7 +20,13 @@ const mongoDB = process.env.MONGO_URL;
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
-app.use(cors());
+app.use(
+	cors({
+		origin: ["https://social-media-app-w99u.vercel.app/"],
+		methods: ["POST", "GET", "PUT", "DELETE"],
+		credentials: true,
+	})
+);
 
 app.use("/api/users", router);
 app.use("/api/auth", auth);
