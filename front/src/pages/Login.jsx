@@ -20,7 +20,7 @@ export default function Login() {
 		e.preventDefault();
 		try {
 			const response = await axios.post(
-				"http://localhost:3000/api/auth/login",
+				"https://socialmediaapp-ydzs.onrender.com/api/auth/login",
 				{
 					username: formData.username,
 					email: formData.email,
