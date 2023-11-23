@@ -20,7 +20,7 @@ export default function Login() {
 		e.preventDefault();
 		try {
 			const response = await axios.post(
-				`https://socialmediaapp-ydzs.onrender.com/api/auth/login`,
+				import.meta.env.VITE_FIREBASE_API + `/api/auth/login`,
 				{
 					username: formData.username,
 					email: formData.email,
