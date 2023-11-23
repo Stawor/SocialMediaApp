@@ -12,7 +12,7 @@ export default function UserNameApi({ userId, size, style, divStyle }) {
 		if (userId) {
 			const getData = async () => {
 				const response = await axios.get(
-					`https://socialmediaapp-ydzs.onrender.com/api/users/${userId}`,
+					`https://socialmediaapp-production.up.railway.app/api/users/${userId}`,
 					{ headers: { Authorization: `Bearer ${TokenCookie}` } }
 				);
 				setUsername(response.data.username);

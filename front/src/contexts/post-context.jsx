@@ -14,7 +14,7 @@ export const PostContextProvider = ({ children }) => {
 	async function getPosts() {
 		if (user) {
 			const response = await axios.get(
-				`https://socialmediaapp-ydzs.onrender.com/api/posts/timeline/${user._id}`,
+				`https://socialmediaapp-production.up.railway.app/api/posts/timeline/${user._id}`,
 				{ headers: { Authorization: `Bearer ${tokenCookie}` } }
 			);
 			setPosts(response.data.userPosts);

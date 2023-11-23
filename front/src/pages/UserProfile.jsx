@@ -17,7 +17,7 @@ export default function UserPosts() {
 
 	async function getPosts() {
 		const response = await axios.get(
-			import.meta.env.VITE_URL + `/api/posts/timeline/${userId}`,
+			`https://socialmediaapp-production.up.railway.app/api/posts/timeline/${userId}`,
 			{ headers: { authorization: `Bearer ${TokenCookie}` } }
 		);
 		setPosts(response.data.userPosts);

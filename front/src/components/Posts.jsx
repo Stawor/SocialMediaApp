@@ -15,7 +15,7 @@ export default function Posts() {
 	async function getPosts() {
 		if (posts) {
 			const response = await axios.get(
-				`https://socialmediaapp-ydzs.onrender.com/posts/timeline/${user._id}`,
+				`https://socialmediaapp-production.up.railway.app/${user._id}`,
 				{ headers: { Authorization: `Bearer ${tokenCookie}` } }
 			);
 			setPosts(response.data.userPosts);

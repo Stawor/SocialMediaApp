@@ -19,7 +19,7 @@ const ImageUpload = () => {
 
 		try {
 			const response = await axios.post(
-				`https://socialmediaapp-ydzs.onrender.com/api/upload`,
+				`https://socialmediaapp-production.up.railway.app/api/upload`,
 				formData,
 				{
 					headers: {

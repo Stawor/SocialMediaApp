@@ -7,7 +7,7 @@ export default function ButtonUnfollow({ userId }) {
 
 	const handleClick = async () => {
 		await axios.put(
-			`https://socialmediaapp-ydzs.onrender.com/api/users/${userId}/unfollow`,
+			`https://socialmediaapp-production.up.railway.app/api/users/${userId}/unfollow`,
 			{
 				id: user._id,
 			}

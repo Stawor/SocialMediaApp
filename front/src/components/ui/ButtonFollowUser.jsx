@@ -7,7 +7,7 @@ export default function ButtonFollowUser({ userId }) {
 
 	const handleClick = async () => {
 		await axios.put(
-			`https://socialmediaapp-ydzs.onrender.com/api/users/${userId}/follow`,
+			`https://socialmediaapp-production.up.railway.app/api/users/${userId}/follow`,
 			{
 				id: user._id,
 			}

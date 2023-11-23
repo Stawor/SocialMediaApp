@@ -13,7 +13,7 @@ export const UserContextProvider = ({ children }) => {
 	const getData = async () => {
 		if (cookie) {
 			const response = await axios.get(
-				`https://socialmediaapp-ydzs.onrender.com/api/users/${cookie}`,
+				`https://socialmediaapp-production.up.railway.app/api/users/${cookie}`,
 				{ headers: { Authorization: `Bearer ${tokenCookie}` } }
 			);
 			setUser(response.data);
