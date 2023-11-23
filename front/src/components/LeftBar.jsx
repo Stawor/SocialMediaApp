@@ -32,7 +32,7 @@ export default function SideBar() {
 			<div
 				className={`lg:w-1/4 w-full bg-white absolute z-50 lg:static lg:bg-inherit ${display} lg:block h-[95vh] transition-opacity overflow-hidden justify-center `}
 			>
-				<ul className=" flex flex-col gap-4 mt-10 items-center lg:items-start 2xl:pl-36">
+				<ul className=" flex flex-col gap-4 mt-10 items-center lg:items-start 3xl:pl-36">
 					<li className="w-full ">
 						<span className="flex items-center text-2xl hover:bg-slate-200 py-4 rounded-lg">
 							<UserNameDisplay
