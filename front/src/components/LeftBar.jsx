@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { MdRssFeed } from "react-icons/md";
-import { BiSolidUserCircle } from "react-icons/bi";
+import HomeIcon from "@mui/icons-material/Home";
 import { MdWork } from "react-icons/md";
 import { AiFillHome } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -49,7 +49,7 @@ export default function SideBar() {
 					<li className=" w-full">
 						<span className=" flex items-center text-2xl hover:bg-slate-200 py-4 lg:pr-36 rounded-lg ">
 							<Link to="/" className="flex items-center ml-3">
-								<AiFillHome />
+								<HomeIcon />
 								Home
 							</Link>
 						</span>
