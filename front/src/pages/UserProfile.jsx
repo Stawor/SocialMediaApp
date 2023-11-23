@@ -1,10 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../contexts/user-context";
-import Posts from "../components/Posts";
+import { Skeleton } from "@mui/material";
 import UserNameApi from "../components/UserNameDisplay";
 import { useParams } from "react-router-dom";
 import PostDisplay from "../components/PostDisplay";
-import { PostContext } from "../contexts/post-context";
+
 import axios from "axios";
 import Cookies from "universal-cookie";
 const Cookie = new Cookies();
@@ -28,7 +27,13 @@ export default function UserPosts() {
 	}, []);
 
 	if (!posts) {
-		return <div>Loading...</div>;
+		return (
+			<div className=" flex flex-col gap-8 lg:w-4/5 w-full items-center">
+				<Skeleton variant="rounded" width="600px" height={240} />;
+				<Skeleton variant="rounded" width={480} height={240} />;
+				<Skeleton variant="rounded" width={480} height={240} />;
+			</div>
+		);
 	}
 	return (
 		<div className=" flex flex-col gap-8 lg:w-4/5 w-full items-center">

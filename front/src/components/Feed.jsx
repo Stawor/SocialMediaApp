@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/user-context";
-
+import { Skeleton } from "@mui/material";
 import axios from "axios";
 
 import PostDisplay from "./PostDisplay";
@@ -32,7 +32,13 @@ export default function Feed() {
 	}
 
 	if (!user) {
-		return <div>Loading...</div>;
+		return (
+			<div>
+				<Skeleton variant="rounded" width={480} height={240} />;
+				<Skeleton variant="rounded" width={480} height={240} />;
+				<Skeleton variant="rounded" width={480} height={240} />;
+			</div>
+		);
 	}
 	return (
 		<>

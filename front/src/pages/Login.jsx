@@ -27,10 +27,6 @@ export default function Login() {
 					password: formData.password,
 				}
 			);
-
-			// if (cookies.get("userId")) {
-			// 	cookies.remove("userId");
-			// }
 			cookies.set("token", response.data.token);
 			cookies.set("userId", response.data.user);
 			setUser(true);

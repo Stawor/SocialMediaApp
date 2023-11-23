@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import FriendPopover from "./ui/PopoverSuggestedContacts";
 import { UserContext } from "../contexts/user-context";
-import Friends from "./Contacts";
+import { Skeleton } from "@mui/material";
 import UserNameApi from "./UserNameDisplay";
 import Cookies from "universal-cookie";
 const Cookie = new Cookies();
@@ -55,7 +55,18 @@ export default function FriendsSuggest() {
 		);
 	}
 	if (!contacts) {
-		return <div>Loading...</div>;
+		return (
+			<div className="flex flex-col gap-8 mt-10">
+				<Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+				<Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+				<Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+				<Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+				<Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+				<Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+				<Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+				<Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+			</div>
+		);
 	}
 	return (
 		<>
