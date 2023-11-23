@@ -6,7 +6,7 @@ import { AiFillHome } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GiEarthAmerica } from "react-icons/gi";
 import { Link } from "react-router-dom";
-import UserNameApi from "./UserNameDisplay";
+import UserNameDisplay from "./UserNameDisplay";
 import { UserContext } from "../contexts/user-context";
 
 export default function SideBar() {
@@ -32,47 +32,47 @@ export default function SideBar() {
 			<div
 				className={`lg:w-1/4 w-full bg-white absolute z-50 lg:static lg:bg-inherit ${display} lg:block h-[95vh] transition-opacity overflow-hidden justify-center `}
 			>
-				<ul className=" flex flex-col gap-4 mt-10 lg:ml-4 2xl:ml-32 items-center lg:items-start">
-					<li>
-						<span className="flex items-center text-2xl hover:bg-slate-200 2xl:pr-36 py-4 rounded-lg">
-							<UserNameApi
+				<ul className=" flex flex-col gap-4 mt-10 items-center lg:items-start 2xl:pl-36">
+					<li className="w-full ">
+						<span className="flex items-center text-2xl hover:bg-slate-200 py-4 rounded-lg">
+							<UserNameDisplay
 								userId={user._id}
 								size={48}
-								style={`h-12 w-12`}
-								divStyle={` `}
+								style={`h-12 w-12 ml-3`}
+								divStyle={``}
 							/>
 						</span>
 					</li>
 
 					{/*                       Fake Links only for looks                     */}
 
-					<li>
-						<span className=" flex items-center text-2xl hover:bg-slate-200 py-4 lg:pr-36 rounded-lg">
-							<Link to="/" className="flex items-center">
+					<li className=" w-full">
+						<span className=" flex items-center text-2xl hover:bg-slate-200 py-4 lg:pr-36 rounded-lg ">
+							<Link to="/" className="flex items-center ml-3">
 								<AiFillHome />
 								Home
 							</Link>
 						</span>
 					</li>
-					<li>
+					<li className=" w-full">
 						<span className=" flex items-center text-2xl hover:bg-slate-200 py-4 lg:pr-36 rounded-lg">
-							<Link to="/" className="flex items-center">
+							<Link to="/" className="flex items-center ml-3">
 								<MdRssFeed />
 								Feed
 							</Link>
 						</span>
 					</li>
-					<li>
+					<li className=" w-full">
 						<span className=" flex items-center text-2xl hover:bg-slate-200  py-4 lg:pr-36 rounded-lg">
-							<Link to="/" className="flex items-center">
+							<Link to="/" className="flex items-center ml-3">
 								<MdWork />
 								Work
 							</Link>
 						</span>
 					</li>
-					<li>
+					<li className=" w-full">
 						<span className=" flex items-center text-2xl hover:bg-slate-200  py-4 lg:pr-36   rounded-lg">
-							<Link to="/" className="flex items-center">
+							<Link to="/" className="flex items-center ml-3">
 								<GiEarthAmerica />
 								Discover
 							</Link>

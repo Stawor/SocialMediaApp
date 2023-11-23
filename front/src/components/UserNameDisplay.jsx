@@ -24,7 +24,7 @@ export default function UserNameApi({ userId, size, style, divStyle }) {
 
 	return (
 		<a href={`/profile/${userId}`}>
-			<div className={`${divStyle} flex items-center gap-2`}>
+			<div className={`${divStyle} flex items-center gap-2 `}>
 				{!profilePicture ? (
 					<img src="/user.png" width={size} className={style} alt="" />
 				) : (
@@ -36,7 +36,7 @@ export default function UserNameApi({ userId, size, style, divStyle }) {
 						alt=""
 					/>
 				)}
-				{username}
+				<p>{username}</p>
 			</div>
 		</a>
 	);
