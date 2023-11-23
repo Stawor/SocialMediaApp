@@ -3,14 +3,15 @@
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
+  
 	"scripts": {
 		"dev": "vite",
-		"build": "npm run build:client && npm run build:server",
+		"build": "tsc && vite build",
 		"build:client": "vite build --outDir dist/client",
 		"build:server": "vite build --outDir dist/server --ssr src/entry-server.js",
 		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-		"host": "vite --host",
-		"preview": "cross-env NODE_ENV=production node server"
+		"preview": "vite preview",
+		"host": "vite --host"
 	},
 	"dependencies": {
 		"@emotion/react": "^11.11.1",
