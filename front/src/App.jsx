@@ -21,7 +21,7 @@ function App() {
 			<div>
 				<NavBar />
 				<div className=" flex justify-center items-center">
-					<div className="flex w-full justify-center gap-10">
+					<div className="flex w-full justify-center">
 						<SideBar />
 						<Outlet />
 						<RightBar />

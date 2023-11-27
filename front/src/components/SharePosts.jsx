@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { UserContext } from "../contexts/user-context";
 import UserNameApi from "./UserNameDisplay";
-import { FaRegImage } from "react-icons/fa6";
+import ImageSearchIcon from "@mui/icons-material/ImageSearch";
 
 import {
 	getStorage,
@@ -143,7 +143,7 @@ export default function SharePosts() {
 					<label htmlFor="image">
 						<div id="image" className=" cursor-pointer flex items-center gap-1">
 							<h1 className=" font-bold">Image</h1>
-							<FaRegImage />
+							<ImageSearchIcon />
 						</div>
 					</label>
 				</div>

@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { AiOutlineLike } from "react-icons/ai";
+import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 
 import axios from "axios";
 
@@ -26,7 +26,7 @@ export default function ButtonLikePosts({ post }) {
 			<div>
 				<button onClick={() => handleLikeClick()}>
 					<span className=" flex items-center">
-						<AiOutlineLike /> {liked}
+						<ThumbUpOutlinedIcon /> {liked}
 					</span>
 				</button>
 			</div>

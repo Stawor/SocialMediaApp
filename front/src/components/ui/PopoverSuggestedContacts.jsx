@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Popover from "@mui/material/Popover";
-import { HiDotsVertical } from "react-icons/hi";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ButtonFollowUser from "./ButtonFollowUser";
 
 export default function FriendPopover({ userId }) {
@@ -20,7 +20,7 @@ export default function FriendPopover({ userId }) {
 	return (
 		<div>
 			<button onClick={handleClick}>
-				<HiDotsVertical />
+				<MoreVertIcon />
 			</button>
 			<Popover
 				id={id}

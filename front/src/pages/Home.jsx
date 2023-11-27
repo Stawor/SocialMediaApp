@@ -9,7 +9,7 @@ export default function Home() {
 	return (
 		//redirect user to login
 
-		<div className="lg:w-1/2 w-full flex flex-col items-center ">
+		<div className="lg:w-1/2 w-full flex flex-col justify-center items-center ">
 			<Share />
 			<Feed />
 		</div>

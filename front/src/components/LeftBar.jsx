@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import { MdRssFeed } from "react-icons/md";
+
 import HomeIcon from "@mui/icons-material/Home";
-import { MdWork } from "react-icons/md";
-import { AiFillHome } from "react-icons/ai";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { GiEarthAmerica } from "react-icons/gi";
+import WorkIcon from "@mui/icons-material/Work";
+import RssFeedIcon from "@mui/icons-material/RssFeed";
+import MenuIcon from "@mui/icons-material/Menu";
+import PublicIcon from "@mui/icons-material/Public";
 import { Link } from "react-router-dom";
 import UserNameDisplay from "./UserNameDisplay";
 import { UserContext } from "../contexts/user-context";
@@ -26,7 +26,7 @@ export default function SideBar() {
 					onClick={handleClick}
 					className="absolute top-2 text-3xl left-1/2 text-white lg:hidden"
 				>
-					<GiHamburgerMenu />
+					<MenuIcon />
 				</button>
 			</div>
 			<div
@@ -57,7 +57,7 @@ export default function SideBar() {
 					<li className=" w-full">
 						<span className=" flex items-center text-2xl hover:bg-slate-200 py-4 lg:pr-36 rounded-lg">
 							<Link to="/" className="flex items-center ml-3">
-								<MdRssFeed />
+								<RssFeedIcon />
 								Feed
 							</Link>
 						</span>
@@ -65,7 +65,7 @@ export default function SideBar() {
 					<li className=" w-full">
 						<span className=" flex items-center text-2xl hover:bg-slate-200  py-4 lg:pr-36 rounded-lg">
 							<Link to="/" className="flex items-center ml-3">
-								<MdWork />
+								<WorkIcon />
 								Work
 							</Link>
 						</span>
@@ -73,7 +73,7 @@ export default function SideBar() {
 					<li className=" w-full">
 						<span className=" flex items-center text-2xl hover:bg-slate-200  py-4 lg:pr-36   rounded-lg">
 							<Link to="/" className="flex items-center ml-3">
-								<GiEarthAmerica />
+								<PublicIcon />
 								Discover
 							</Link>
 						</span>

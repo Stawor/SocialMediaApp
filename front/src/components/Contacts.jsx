@@ -28,7 +28,7 @@ export default function Friends() {
 
 	if (!friends) {
 		return (
-			<div className="flex flex-col gap-6 mt-10">
+			<div className="flex flex-col justify-center gap-6 mt-10">
 				<Skeleton variant="text" sx={{ fontSize: "1rem" }} />
 				<Skeleton variant="text" sx={{ fontSize: "1rem" }} />
 				<Skeleton variant="text" sx={{ fontSize: "1rem" }} />
