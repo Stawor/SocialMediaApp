@@ -8,17 +8,6 @@ import Comments from "./Comments";
 
 export default function PostDisplay({ posts, setPostUpdate }) {
 	const { user } = useContext(UserContext);
-	const [showComments, setShowComments] = useState("hidden");
-
-	function handleClick() {
-		if (showComments == "hidden") {
-			setShowComments("block");
-			console.log(showComments);
-		} else {
-			setShowComments("hidden");
-			console.log(showComments);
-		}
-	}
 
 	return (
 		<div className=" max-w-2xl flex flex-col gap-8 lg:w-4/5 w-full ">
@@ -47,13 +36,13 @@ export default function PostDisplay({ posts, setPostUpdate }) {
 					</div>
 					<div className="border-t flex justify-between">
 						<ButtonLikePosts post={post} />
-						<button onClick={handleClick}>Comments</button>
+						<button onClick={(e) => handleClick}>Comment</button>
 					</div>
 					<div>
 						<CommentPostInput post={post} setPostUpdate={setPostUpdate} />
 					</div>
-					<div className={`${showComments}`} onClick={handleClick}>
-						<Comments post={post} showComments={showComments} />
+					<div>
+						<Comments post={post} />
 					</div>
 				</div>
 			))}
