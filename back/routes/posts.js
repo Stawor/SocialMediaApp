@@ -98,4 +98,16 @@ router.get("/timeline/all/:id", verifyToken, async (req, res) => {
 	}
 });
 
+router.put("/:id/comment", async (req, res) => {
+	try {
+		const post = await PostModel.findById(req.params.id);
+		const user = await UserModel.findById(req.params.id);
+		await post.updateOne({
+			$push: { comments: req.body.comment, userId: user._id },
+		});
+		res.status(200).json(res.body.comment);
+	} catch (err) {
+		res.status(500).json(err);
+	}
+});
 export default router;

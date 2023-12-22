@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
 import UserNameDisplay from "./UserNameDisplay";
 import PopoverPosts from "./ui/PopoverPosts";
-import Like from "./ui/ButtonLikePost";
+import ButtonLikePosts from "./ui/ButtonLikePost";
 import { UserContext } from "../contexts/user-context";
+import ButtonCommentPost from "./ui/ButtonCommentPost";
 
 export default function PostDisplay({ posts, setPostUpdate }) {
 	const { user } = useContext(UserContext);
@@ -33,9 +34,10 @@ export default function PostDisplay({ posts, setPostUpdate }) {
 					<div className="flex items-center justify-center">
 						{post.img && <img src={post.img} width={400} alt="post image" />}
 					</div>
-					<div className="border-t">
-						<Like post={post} />
+					<div className="border-t flex justify-between">
+						<ButtonLikePosts post={post} />
 					</div>
+					<ButtonCommentPost />
 				</div>
 			))}
 		</div>
