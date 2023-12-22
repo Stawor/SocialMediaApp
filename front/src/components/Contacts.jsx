@@ -7,14 +7,14 @@ import PopoverContacts from "./ui/PopoverContacts";
 import Cookies from "universal-cookie";
 const Cookie = new Cookies();
 
-export default function Friends() {
+export default function Contacts({ setUserUpdate, userUpdate }) {
 	const TokenCookie = Cookie.get("token");
-	const [friends, setFriends] = useState(null);
+	const [users, setusers] = useState(null);
 	const { user } = useContext(UserContext);
 
 	useEffect(() => {
 		getData();
-	}, [user]);
+	}, [user, userUpdate]);
 
 	const getData = async () => {
 		if (user) {
@@ -22,13 +22,13 @@ export default function Friends() {
 				`https://socialmediaapp-production.up.railway.app/api/users/followers/${user._id}`,
 				{ headers: { Authorization: `Bearer ${TokenCookie}` } }
 			);
-			setFriends(response.data.followins);
+			setusers(response.data.followins);
 		}
 	};
 
-	if (!friends) {
+	if (!users) {
 		return (
-			<div className="flex flex-col justify-center gap-6 mt-10">
+			<div className="flex flex-col justify-center gap-6 mt-10 w-3/4">
 				<Skeleton variant="text" sx={{ fontSize: "1rem" }} />
 				<Skeleton variant="text" sx={{ fontSize: "1rem" }} />
 				<Skeleton variant="text" sx={{ fontSize: "1rem" }} />
@@ -44,15 +44,15 @@ export default function Friends() {
 		<div>
 			<div className="flex flex-col gap-6 mt-10">
 				<h1 className="font-bold text-slate-400 ">Contacts</h1>
-				{friends.map((friend) => (
-					<div key={friend} className=" flex items-center gap-3">
+				{users.map((user) => (
+					<div key={user} className=" flex items-center gap-3">
 						<UserNameApi
-							userId={friend}
+							userId={user}
 							size={48}
 							style={`h-12`}
 							divStyle={undefined}
 						/>
-						<PopoverContacts postId={friend} />
+						<PopoverContacts userId={user} setUserUpdate={setUserUpdate} />
 					</div>
 				))}
 			</div>

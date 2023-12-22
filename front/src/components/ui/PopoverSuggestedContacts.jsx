@@ -1,12 +1,25 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Popover from "@mui/material/Popover";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import ButtonFollowUser from "./ButtonFollowUser";
+import { UserContext } from "../../contexts/user-context";
+import axios from "axios";
 
-export default function FriendPopover({ userId }) {
+export default function FriendPopover({ setUserUpdate, userId }) {
 	const [anchorEl, setAnchorEl] = useState(null);
 
-	const handleClick = (event) => {
+	const { user } = useContext(UserContext);
+
+	const handleClick = async () => {
+		await axios.put(
+			`https://socialmediaapp-production.up.railway.app/api/users/${userId}/follow`,
+			{
+				id: user._id,
+			}
+		);
+		setUserUpdate((prevUser) => prevUser + 1);
+	};
+
+	const handleOpen = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
 
@@ -19,7 +32,7 @@ export default function FriendPopover({ userId }) {
 
 	return (
 		<div>
-			<button onClick={handleClick}>
+			<button onClick={handleOpen}>
 				<MoreVertIcon />
 			</button>
 			<Popover
@@ -37,7 +50,7 @@ export default function FriendPopover({ userId }) {
 				}}
 			>
 				<div className="flex flex-col px-10 text-lg">
-					<ButtonFollowUser userId={userId} />
+					<button onClick={handleClick}>Follow</button>
 				</div>
 			</Popover>
 		</div>

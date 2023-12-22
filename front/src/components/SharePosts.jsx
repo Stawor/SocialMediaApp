@@ -13,7 +13,7 @@ import {
 } from "firebase/storage";
 import { app } from "../utils/firebase";
 
-export default function SharePosts() {
+export default function SharePosts({ setpostsUpdate, postsUpdate }) {
 	const storage = getStorage(app);
 	const { user } = useContext(UserContext);
 	const [desc, setDesc] = useState("");
@@ -85,7 +85,7 @@ export default function SharePosts() {
 					img: downloadUrl,
 				}
 			);
-			window.location.reload();
+			setpostsUpdate((prevpostUpdate) => prevpostUpdate + 1);
 			setDesc("");
 		} catch (err) {
 			console.log(err);
@@ -96,7 +96,7 @@ export default function SharePosts() {
 		<form
 			onSubmit={handleSubmit}
 			id="post"
-			className="border flex flex-col p-4 gap-8 text-lg rounded-lg mb-8 max-w-2xl lg:w-4/5 w-full"
+			className="border flex flex-col p-4 gap-8 mt-10 text-lg rounded-lg mb-8 max-w-2xl lg:w-4/5 w-full"
 		>
 			<label htmlFor="post">
 				<div className=" text-3xl mb-4 flex items-center">

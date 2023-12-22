@@ -1,16 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import PostDisplay from "./PostDisplay";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Cookies from "universal-cookie";
-import SharePosts from "./SharePosts";
+import { UserContext } from "../contexts/user-context";
+import PostDisplay from "./PostDisplay";
 const Cookie = new Cookies();
 
 export default function Posts() {
 	const tokenCookie = Cookie.get("token");
-
+	const { user } = useContext(UserContext);
+	const [postUpdate, setPostUpdate] = useState(0);
 	const [posts, setPosts] = useState("");
-	let { userId } = useParams();
 
 	async function getPosts() {
 		if (posts) {
@@ -23,11 +23,11 @@ export default function Posts() {
 	}
 	useEffect(() => {
 		getPosts();
-	}, [posts]);
+	}, [posts, postUpdate]);
 
 	return (
 		<>
-			<PostDisplay posts={posts} />
+			<PostDisplay posts={posts} setPostUpdate={setPostUpdate} />
 		</>
 	);
 }

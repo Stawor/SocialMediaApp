@@ -7,14 +7,14 @@ import UserNameApi from "./UserNameDisplay";
 import Cookies from "universal-cookie";
 const Cookie = new Cookies();
 
-export default function FriendsSuggest() {
+export default function FriendsSuggest({ setUserUpdate, userUpdate }) {
 	const TokenCookie = Cookie.get("token");
-	const [contacts, setContacts] = useState("");
+	const [contacts, setContacts] = useState(0);
 	const { user } = useContext(UserContext);
 
 	useEffect(() => {
 		getData();
-	}, [user]);
+	}, [user, userUpdate]);
 
 	const getData = async () => {
 		if (user) {
@@ -29,34 +29,9 @@ export default function FriendsSuggest() {
 		}
 	};
 
-	function DisplayUsers() {
-		return (
-			<div>
-				<div className=" flex flex-col gap-6 ">
-					<h1 className="font-bold text-slate-400 ">People you may know</h1>
-					{contacts.map((contact) => {
-						if (contact.userId == user._id) {
-							return;
-						}
-						return (
-							<div key={contact.userId} className=" flex items-center gap-3">
-								<UserNameApi
-									userId={contact.userId}
-									size={48}
-									style={`h-12`}
-									divStyle={undefined}
-								/>
-								<FriendPopover userId={contact.userId} />
-							</div>
-						);
-					})}
-				</div>
-			</div>
-		);
-	}
 	if (!contacts) {
 		return (
-			<div className="flex flex-col gap-8 mt-10">
+			<div className="flex flex-col gap-8 mt-10 w-3/4">
 				<Skeleton variant="text" sx={{ fontSize: "1rem" }} />
 				<Skeleton variant="text" sx={{ fontSize: "1rem" }} />
 				<Skeleton variant="text" sx={{ fontSize: "1rem" }} />
@@ -70,7 +45,28 @@ export default function FriendsSuggest() {
 	}
 	return (
 		<>
-			<DisplayUsers />
+			<div className=" flex flex-col gap-6 ">
+				<h1 className="font-bold text-slate-400 ">People you may know</h1>
+				{contacts.map((contact) => {
+					if (contact.userId == user._id) {
+						return;
+					}
+					return (
+						<div key={contact.userId} className=" flex items-center gap-3">
+							<UserNameApi
+								userId={contact.userId}
+								size={48}
+								style={`h-12`}
+								divStyle={undefined}
+							/>
+							<FriendPopover
+								userId={contact.userId}
+								setUserUpdate={setUserUpdate}
+							/>
+						</div>
+					);
+				})}
+			</div>
 		</>
 	);
 }

@@ -1,12 +1,25 @@
 import Popover from "@mui/material/Popover";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Unfollow from "./ButtonUnfollow";
-import { useState } from "react";
+import { UserContext } from "../../contexts/user-context";
+import { useState, useContext } from "react";
+import axios from "axios";
 
-export default function PopoverContacts({ postId }) {
+export default function PopoverContacts({ setUserUpdate, userId }) {
 	const [anchorEl, setAnchorEl] = useState(null);
 
-	const handleClick = (event) => {
+	const { user } = useContext(UserContext);
+
+	const handleClick = async () => {
+		await axios.put(
+			`https://socialmediaapp-production.up.railway.app/api/users/${userId}/unfollow`,
+			{
+				id: user._id,
+			}
+		);
+		setUserUpdate((prevUser) => prevUser + 1);
+	};
+
+	const handleOpen = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
 
@@ -19,7 +32,7 @@ export default function PopoverContacts({ postId }) {
 
 	return (
 		<div>
-			<button onClick={handleClick}>
+			<button onClick={handleOpen}>
 				<MoreVertIcon />
 			</button>
 			<Popover
@@ -37,7 +50,7 @@ export default function PopoverContacts({ postId }) {
 				}}
 			>
 				<div className="flex flex-col px-10 text-lg">
-					<Unfollow userId={postId} />
+					<button onClick={handleClick}>Unfollow</button>
 				</div>
 			</Popover>
 		</div>

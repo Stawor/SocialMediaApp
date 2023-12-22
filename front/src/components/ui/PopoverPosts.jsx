@@ -1,12 +1,26 @@
 import Popover from "@mui/material/Popover";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Delete from "./ButtonDeletePost";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import axios from "axios";
+import { UserContext } from "../../contexts/user-context";
 
-export default function UserPopover({ postId }) {
+export default function PopoverPosts({ postId, setPostUpdate }) {
 	const [anchorEl, setAnchorEl] = useState(null);
+	const [error, setError] = useState("");
+	const { user } = useContext(UserContext);
 
-	const handleClick = (event) => {
+	const handleClick = async () => {
+		try {
+			await axios.delete(
+				`https://socialmediaapp-production.up.railway.app/api/posts/${postId}/${user._id}`
+			);
+		} catch (err) {
+			setError(err.response.data);
+		}
+		setPostUpdate((prev) => prev + 1);
+	};
+
+	const handleOpen = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
 
@@ -19,7 +33,7 @@ export default function UserPopover({ postId }) {
 
 	return (
 		<div>
-			<button onClick={handleClick}>
+			<button onClick={handleOpen}>
 				<MoreVertIcon />
 			</button>
 			<Popover
@@ -37,7 +51,7 @@ export default function UserPopover({ postId }) {
 				}}
 			>
 				<div className="flex flex-col px-10 text-lg">
-					<Delete postId={postId} />
+					<button onClick={handleClick}>Delete</button>
 				</div>
 			</Popover>
 		</div>

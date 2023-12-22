@@ -22,6 +22,10 @@ const PostSchema = new Schema(
 			type: Array,
 			default: [],
 		},
+		comments: {
+			type: Array,
+			default: [],
+		},
 
 		img: String,
 	},

@@ -7,15 +7,16 @@ import PostDisplay from "./PostDisplay";
 import Cookies from "universal-cookie";
 const Cookie = new Cookies();
 
-export default function Feed() {
+export default function Feed({ postsUpdate }) {
 	const TokenCookie = Cookie.get("token");
 	const { user } = useContext(UserContext);
+	const [postUpdate, setPostUpdate] = useState(0);
 
 	const [posts, setPosts] = useState([]);
 
 	useEffect(() => {
 		getFeed();
-	}, [user]);
+	}, [user, postsUpdate, postUpdate]);
 
 	async function getFeed() {
 		if (user) {
@@ -23,6 +24,7 @@ export default function Feed() {
 				`https://socialmediaapp-production.up.railway.app/api/posts/timeline/all/${user._id}`,
 				{ headers: { Authorization: `Bearer ${TokenCookie}` } }
 			);
+
 			setPosts(
 				response.data.sort((p1, p2) => {
 					return new Date(p2.createdAt) - new Date(p1.createdAt);
@@ -42,7 +44,7 @@ export default function Feed() {
 	}
 	return (
 		<>
-			<PostDisplay posts={posts} />
+			<PostDisplay posts={posts} setPostUpdate={setPostUpdate} />
 		</>
 	);
 }

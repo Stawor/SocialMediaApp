@@ -11,6 +11,8 @@ const Cookie = new Cookies();
 export default function UserPosts() {
 	const TokenCookie = Cookie.get("token");
 	const [posts, setPosts] = useState();
+	const [postUpdate, setPostUpdate] = useState(0);
+
 	let { userId } = useParams();
 	UserNameApi({ userId });
 
@@ -24,7 +26,7 @@ export default function UserPosts() {
 
 	useEffect(() => {
 		getPosts();
-	}, []);
+	}, [userId, postUpdate]);
 
 	if (!posts) {
 		return (
@@ -45,7 +47,7 @@ export default function UserPosts() {
 					divStyle={`flex-col text-4xl justify-center items-center w-max`}
 				/>
 			</div>
-			<PostDisplay posts={posts} />
+			<PostDisplay posts={posts} setPostUpdate={setPostUpdate} />
 		</div>
 	);
 }

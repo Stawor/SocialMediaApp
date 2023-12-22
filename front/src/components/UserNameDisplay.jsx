@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import { Link } from "react-router-dom";
 const Cookie = new Cookies();
 
-export default function UserNameApi({ userId, size, style, divStyle }) {
+export default function UserNameDisplay({ userId, size, style, divStyle }) {
 	const TokenCookie = Cookie.get("token");
 
 	const [username, setUsername] = useState();
@@ -23,7 +24,7 @@ export default function UserNameApi({ userId, size, style, divStyle }) {
 	}, [userId]);
 
 	return (
-		<a href={`/profile/${userId}`}>
+		<Link to={`/profile/${userId}`}>
 			<div className={`${divStyle} flex items-center gap-2 `}>
 				{!profilePicture ? (
 					<img src="/user.png" width={size} className={style} alt="" />
@@ -38,6 +39,6 @@ export default function UserNameApi({ userId, size, style, divStyle }) {
 				)}
 				<p>{username}</p>
 			</div>
-		</a>
+		</Link>
 	);
 }
