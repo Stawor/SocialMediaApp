@@ -5,6 +5,7 @@ import ButtonLikePosts from "./ui/ButtonLikePost";
 import { UserContext } from "../contexts/user-context";
 import ButtonCommentPost from "./ui/ButtonCommentPost";
 
+
 export default function PostDisplay({ posts, setPostUpdate }) {
 	const { user } = useContext(UserContext);
 
@@ -37,7 +38,22 @@ export default function PostDisplay({ posts, setPostUpdate }) {
 					<div className="border-t flex justify-between">
 						<ButtonLikePosts post={post} />
 					</div>
-					<ButtonCommentPost />
+					<ButtonCommentPost post={post} />
+					<div>
+						{post.comments.map((comment) => (
+							<div key={comment._id}>
+								<UserNameDisplay
+									userId={comment.userId}
+									style={`flex items-center h-8 gap-2`}
+									size={30}
+									divStyle={undefined}
+								/>
+								<div className=" bg-slate-300 w-fit rounded-xl px-10 py-1">
+									{comment.comment}
+								</div>
+							</div>
+						))}
+					</div>
 				</div>
 			))}
 		</div>

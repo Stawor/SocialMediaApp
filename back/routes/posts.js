@@ -98,14 +98,14 @@ router.get("/timeline/all/:id", verifyToken, async (req, res) => {
 	}
 });
 
-router.put("/:id/comment", async (req, res) => {
+router.put("/comment/:postId/:userId", async (req, res) => {
 	try {
-		const post = await PostModel.findById(req.params.id);
-		const user = await UserModel.findById(req.params.id);
+		const post = await PostModel.findById(req.params.postId);
+		const userId = req.params.userId;
 		await post.updateOne({
-			$push: { comments: req.body.comment, userId: user._id },
+			$push: { comments: { comment: req.body.comment, userId: userId } },
 		});
-		res.status(200).json(res.body.comment);
+		res.status(200).json("ok");
 	} catch (err) {
 		res.status(500).json(err);
 	}
