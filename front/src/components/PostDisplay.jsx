@@ -36,7 +36,6 @@ export default function PostDisplay({ posts, setPostUpdate }) {
 					</div>
 					<div className="border-t flex justify-between">
 						<ButtonLikePosts post={post} />
-						<button onClick={(e) => handleClick}>Comment</button>
 					</div>
 					<div>
 						<CommentPostInput post={post} setPostUpdate={setPostUpdate} />
