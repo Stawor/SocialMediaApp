@@ -3,13 +3,23 @@ import UserNameDisplay from "./UserNameDisplay";
 import PopoverPosts from "./ui/PopoverPosts";
 import ButtonLikePosts from "./ui/ButtonLikePost";
 import { UserContext } from "../contexts/user-context";
-import ButtonCommentPost from "./ui/ButtonCommentPost";
-
+import CommentPostInput from "./ui/CommentPostInput";
+import Comments from "./Comments";
 
 export default function PostDisplay({ posts, setPostUpdate }) {
 	const { user } = useContext(UserContext);
+	const [showComments, setShowComments] = useState("hidden");
 
-	console.log(posts);
+	function handleClick() {
+		if (showComments == "hidden") {
+			setShowComments("block");
+			console.log(showComments);
+		} else {
+			setShowComments("hidden");
+			console.log(showComments);
+		}
+	}
+
 	return (
 		<div className=" max-w-2xl flex flex-col gap-8 lg:w-4/5 w-full ">
 			{posts.map((post) => (
@@ -37,22 +47,13 @@ export default function PostDisplay({ posts, setPostUpdate }) {
 					</div>
 					<div className="border-t flex justify-between">
 						<ButtonLikePosts post={post} />
+						<button onClick={handleClick}>Comments</button>
 					</div>
-					<ButtonCommentPost post={post} />
 					<div>
-						{post.comments.map((comment) => (
-							<div key={comment._id}>
-								<UserNameDisplay
-									userId={comment.userId}
-									style={`flex items-center h-8 gap-2`}
-									size={30}
-									divStyle={undefined}
-								/>
-								<div className=" bg-slate-300 w-fit rounded-xl px-10 py-1">
-									{comment.comment}
-								</div>
-							</div>
-						))}
+						<CommentPostInput post={post} setPostUpdate={setPostUpdate} />
+					</div>
+					<div className={`${showComments}`} onClick={handleClick}>
+						<Comments post={post} showComments={showComments} />
 					</div>
 				</div>
 			))}
