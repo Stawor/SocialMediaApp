@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import HamburgerMenu from "./HamburgerMenu";
 import ButtonDarkTheme from "./ui/ButtonDarkTheme";
 
-export default function TopBar() {
+export default function Navbar() {
 	return (
 		<div>
 			<nav className="bg-blue-500 h-12 flex justify-center text-lg font-bold dark:bg-black text-white w-[99vw] lg:w-full px-10">
