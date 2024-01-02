@@ -4,7 +4,7 @@ import UserNameDisplay from "../components/UserNameDisplay";
 import LeftBar from "../components/LeftBar";
 import PopoverContacts from "../components/ui/PopoverContacts";
 import { UserContext } from "../contexts/user-context";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/NavBar";
 import PopoverSuggestedContacts from "../components/ui/PopoverSuggestedContacts";
 import Skeleton from "@mui/material/Skeleton";
 
