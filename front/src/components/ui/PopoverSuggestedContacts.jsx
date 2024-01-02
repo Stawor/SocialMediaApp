@@ -3,11 +3,12 @@ import Popover from "@mui/material/Popover";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { UserContext } from "../../contexts/user-context";
 import axios from "axios";
+import { ContactsContext } from "../../contexts/contacts-context";
 
-export default function FriendPopover({ setUserUpdate, userId }) {
+export default function PopoverSuggestedContacts({ userId }) {
 	const [anchorEl, setAnchorEl] = useState(null);
-
 	const { user } = useContext(UserContext);
+	const { setUpdate } = useContext(ContactsContext);
 
 	const handleClick = async () => {
 		await axios.put(
@@ -16,7 +17,7 @@ export default function FriendPopover({ setUserUpdate, userId }) {
 				id: user._id,
 			}
 		);
-		setUserUpdate((prevUser) => prevUser + 1);
+		setUpdate((prev) => prev + 1);
 	};
 
 	const handleOpen = (event) => {

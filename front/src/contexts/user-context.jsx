@@ -3,9 +3,9 @@ import Cookies from "universal-cookie";
 import axios from "axios";
 
 export const UserContext = createContext(false);
-const cookies = new Cookies();
 
 export const UserContextProvider = ({ children }) => {
+	const cookies = new Cookies();
 	const tokenCookie = cookies.get("token");
 	const cookie = cookies.get("userId");
 	const [user, setUser] = useState("");

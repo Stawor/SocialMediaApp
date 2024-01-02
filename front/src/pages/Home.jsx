@@ -6,15 +6,11 @@ import { useState } from "react";
 const cookies = new Cookies();
 
 export default function Home() {
-	const cookie = cookies.get("token");
-	const [postsUpdate, setpostsUpdate] = useState(0);
-	console.log(postsUpdate);
+	const [updatePosts, setUpdatePosts] = useState(0);
 	return (
-		//redirect user to login
-
-		<div className="lg:w-1/2 w-full flex flex-col items-center ">
-			<SharePosts postsUpdate={postsUpdate} setpostsUpdate={setpostsUpdate} />
-			<Feed postsUpdate={postsUpdate} setpostsUpdate={setpostsUpdate} />
+		<div className="lg:w-1/2 w-3/4 max-w-5xl min-h-screen flex flex-col items-center">
+			<SharePosts setUpdatePosts={setUpdatePosts} />
+			<Feed updatePosts={updatePosts} setUpdatePosts={setUpdatePosts} />
 		</div>
 	);
 }

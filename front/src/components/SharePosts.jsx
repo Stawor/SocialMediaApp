@@ -3,7 +3,7 @@ import axios from "axios";
 import { UserContext } from "../contexts/user-context";
 import UserNameApi from "./UserNameDisplay";
 import ImageSearchIcon from "@mui/icons-material/ImageSearch";
-
+import Skeleton from "@mui/material/Skeleton";
 import {
 	getStorage,
 	ref,
@@ -13,7 +13,7 @@ import {
 } from "firebase/storage";
 import { app } from "../utils/firebase";
 
-export default function SharePosts({ setpostsUpdate, postsUpdate }) {
+export default function SharePosts({ setUpdatePosts }) {
 	const storage = getStorage(app);
 	const { user } = useContext(UserContext);
 	const [desc, setDesc] = useState("");
@@ -85,26 +85,32 @@ export default function SharePosts({ setpostsUpdate, postsUpdate }) {
 					img: downloadUrl,
 				}
 			);
-			setpostsUpdate((prevpostUpdate) => prevpostUpdate + 1);
+			setUpdatePosts((prev) => prev + 1);
 			setDesc("");
 		} catch (err) {
 			console.log(err);
 		}
 	};
+	if (!user) {
+		return (
+			<div className="flex justify-center items-center my-10">
+				<Skeleton variant="rounded" width={480} height={240} />
+			</div>
+		);
+	}
 
 	return (
 		<form
 			onSubmit={handleSubmit}
 			id="post"
-			className="border flex flex-col p-4 gap-8 mt-10 text-lg rounded-lg mb-8 max-w-2xl lg:w-4/5 w-full"
+			className="border bg-slate-50 flex flex-col p-4 gap-8 mt-10 text-lg rounded-lg mb-8 max-w-2xl lg:w-4/5 w-full dark:bg-slate-800"
 		>
 			<label htmlFor="post">
 				<div className=" text-3xl mb-4 flex items-center">
 					<UserNameApi
 						userId={user._id}
-						size={50}
-						style={`h-12`}
-						divStyle={undefined}
+						style={`h-12 w-12 text-5xl`}
+						divStyle={`flex`}
 					/>
 				</div>
 
@@ -112,7 +118,7 @@ export default function SharePosts({ setpostsUpdate, postsUpdate }) {
 					type="text"
 					name="name"
 					value={desc}
-					className=" w-full border border-slate-300 h-20 px-10 rounded-lg mb-4 hover:bg-slate-100"
+					className=" w-full border border-slate-300 h-20 px-10 rounded-lg mb-4 dark:bg-slate-700 hover:bg-slate-100"
 					placeholder="How are you doing?"
 					onChange={(e) => setDesc(e.target.value)}
 				/>
@@ -141,7 +147,7 @@ export default function SharePosts({ setpostsUpdate, postsUpdate }) {
 						className=" hidden"
 					/>
 					<label htmlFor="image">
-						<div id="image" className=" cursor-pointer flex items-center gap-1">
+						<div id="image" className=" cursor-pointer flex items-center gap-">
 							<h1 className=" font-bold">Image</h1>
 							<ImageSearchIcon />
 						</div>

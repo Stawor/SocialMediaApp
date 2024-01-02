@@ -30,21 +30,18 @@ export default function UserPosts() {
 
 	if (!posts) {
 		return (
-			<div className=" flex flex-col gap-8 lg:w-4/5 w-full items-center">
-				<Skeleton variant="rounded" width="600px" height={240} />;
-				<Skeleton variant="rounded" width={480} height={240} />;
-				<Skeleton variant="rounded" width={480} height={240} />;
+			<div className=" flex flex-col lg:w-4/5 w-full items-center mt-10">
+				<Skeleton variant="rounded" width={600} height={240} />
 			</div>
 		);
 	}
 	return (
-		<div className=" flex flex-col gap-8 lg:w-4/5 w-full items-center">
-			<div className=" flex border w-full items-center justify-center h-1/3 max-w-7xl bg-slate-50 mt-10">
+		<div className=" flex flex-col w-full lg:w-3/5 gap-8 items-center min-h-screen">
+			<div className=" flex border w-4/5 items-center justify-center max-w-7xl bg-slate-50 dark:bg-slate-800 mt-10">
 				<UserNameApi
 					userId={userId}
-					size={208}
-					style={`h-52`}
-					divStyle={`flex-col text-4xl justify-center items-center w-max`}
+					style={` w-40 h-40 text-9xl justify-center items-center`}
+					divStyle={`flex flex-col text-4xl`}
 				/>
 			</div>
 			<PostDisplay posts={posts} setPostUpdate={setPostUpdate} />

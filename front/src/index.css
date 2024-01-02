@@ -13,3 +13,9 @@
 	padding: 0px;
 	box-sizing: border-box;
 }
+
+.disable-scroll {
+	position: fixed;
+	overflow-y: scroll;
+	width: 100vw;
+}

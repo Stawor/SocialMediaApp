@@ -4,7 +4,7 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import { UserContext } from "../../contexts/user-context";
 
-export default function PopoverPosts({ postId, setPostUpdate }) {
+export default function PopoverPosts({ postId, setUpdatePosts }) {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [error, setError] = useState("");
 	const { user } = useContext(UserContext);
@@ -17,7 +17,7 @@ export default function PopoverPosts({ postId, setPostUpdate }) {
 		} catch (err) {
 			setError(err.response.data);
 		}
-		setPostUpdate((prev) => prev + 1);
+		setUpdatePosts((prev) => prev + 1);
 	};
 
 	const handleOpen = (event) => {

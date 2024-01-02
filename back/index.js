@@ -20,6 +20,7 @@ main().catch((err) => console.log(err));
 async function main() {
 	await mongoose.connect(mongoDB);
 }
+
 //middleware
 app.use(express.json());
 app.use(helmet());

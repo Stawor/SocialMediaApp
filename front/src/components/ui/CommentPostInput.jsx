@@ -3,7 +3,7 @@ import axios from "axios";
 import { UserContext } from "../../contexts/user-context";
 import SendIcon from "@mui/icons-material/Send";
 
-export default function CommentPostInput({ post, setPostUpdate }) {
+export default function CommentPostInput({ post, setUpdatePosts }) {
 	const { user } = useContext(UserContext);
 	const [comment, setComment] = useState("");
 
@@ -16,20 +16,20 @@ export default function CommentPostInput({ post, setPostUpdate }) {
 					comment: comment,
 				}
 			);
+			setUpdatePosts((prev) => prev + 1);
 			setComment("");
-			setPostUpdate((prev) => prev + 1);
 		} catch (err) {
 			console.log(err);
 		}
 	}
-	console.log(comment);
+
 	return (
 		<form onSubmit={handleSubmit} style={{ position: "relative" }}>
 			<input
 				onChange={(e) => setComment(e.target.value)}
 				type="text"
 				value={comment}
-				className="border border-slate-300 rounded-2xl w-full py-1 px-4 m-1"
+				className="border border-slate-300 rounded-2xl w-full py-1 px-4 m-1 dark:bg-slate-700"
 				style={{ paddingRight: "60px" }} // make room for the button
 			/>
 			<button

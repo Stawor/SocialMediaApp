@@ -29,7 +29,7 @@ export default function Login() {
 			);
 			cookies.set("token", response.data.token);
 			cookies.set("userId", response.data.user);
-			setUser(true);
+			setUser(null);
 
 			if (cookies.get("token")) {
 				navigate("/");

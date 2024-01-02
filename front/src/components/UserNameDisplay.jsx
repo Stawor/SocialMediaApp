@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { Link } from "react-router-dom";
-const Cookie = new Cookies();
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 
-export default function UserNameDisplay({ userId, size, style, divStyle }) {
+export default function UserNameDisplay({ userId, style, divStyle }) {
+	const Cookie = new Cookies();
 	const TokenCookie = Cookie.get("token");
-
 	const [username, setUsername] = useState();
 	const [profilePicture, setProfilePicture] = useState();
+
 	useEffect(() => {
 		if (userId) {
 			const getData = async () => {
@@ -25,16 +27,19 @@ export default function UserNameDisplay({ userId, size, style, divStyle }) {
 
 	return (
 		<Link to={`/profile/${userId}`}>
-			<div className={`${divStyle} flex items-center gap-2 `}>
+			<div className={`${divStyle} items-center gap-2 rounded-full`}>
 				{!profilePicture ? (
-					<img src="/user.png" width={size} className={style} alt="" />
+					<div className={`${style} flex`}>
+						<PersonOutlinedIcon
+							fontSize="inherit"
+							className="border-2 border-slate-700 rounded-full p-1 dark:border-slate-200"
+						/>
+					</div>
 				) : (
 					<img
 						src={profilePicture}
-						width={size}
-						height={size}
-						className={`${style} rounded-full`}
-						alt=""
+						className={`${style}  rounded-full`}
+						alt="profile picture"
 					/>
 				)}
 				<p>{username}</p>

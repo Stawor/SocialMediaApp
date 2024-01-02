@@ -2,21 +2,18 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/user-context";
 import { Skeleton } from "@mui/material";
 import axios from "axios";
-
 import PostDisplay from "./PostDisplay";
 import Cookies from "universal-cookie";
-const Cookie = new Cookies();
 
-export default function Feed({ postsUpdate }) {
+export default function Feed({ updatePosts, setUpdatePosts }) {
+	const Cookie = new Cookies();
 	const TokenCookie = Cookie.get("token");
 	const { user } = useContext(UserContext);
-	const [postUpdate, setPostUpdate] = useState(0);
-
 	const [posts, setPosts] = useState([]);
 
 	useEffect(() => {
 		getFeed();
-	}, [user, postsUpdate, postUpdate]);
+	}, [user, updatePosts]);
 
 	async function getFeed() {
 		if (user) {
@@ -35,16 +32,22 @@ export default function Feed({ postsUpdate }) {
 
 	if (!user) {
 		return (
-			<div>
-				<Skeleton variant="rounded" width={480} height={240} />;
-				<Skeleton variant="rounded" width={480} height={240} />;
-				<Skeleton variant="rounded" width={480} height={240} />;
+			<div className=" flex flex-col gap-10">
+				<div>
+					<Skeleton variant="rounded" width={480} height={240} />
+				</div>
+				<div>
+					<Skeleton variant="rounded" width={480} height={240} />
+				</div>
+				<div>
+					<Skeleton variant="rounded" width={480} height={240} />
+				</div>
 			</div>
 		);
 	}
 	return (
 		<>
-			<PostDisplay posts={posts} setPostUpdate={setPostUpdate} />
+			<PostDisplay posts={posts} setUpdatePosts={setUpdatePosts} />
 		</>
 	);
 }

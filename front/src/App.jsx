@@ -14,13 +14,14 @@ import Cookies from "universal-cookie";
 import Login from "./pages/Login";
 
 import UserProfile from "./pages/UserProfile";
+import ContactPage from "./pages/ContactPage";
 
 function App() {
 	const Layout = () => {
 		return (
 			<div>
 				<NavBar />
-				<div className=" flex justify-center items-center">
+				<div className=" flex justify-center items-center dark:bg-slate-900 dark:text-slate-300">
 					<div className="flex w-full justify-center">
 						<SideBar />
 						<Outlet />
@@ -72,10 +73,14 @@ function App() {
 		},
 
 		{
+			path: "/contacts",
+			element: <ContactPage />,
+			errorElement: <ErrorPage />,
+		},
+		{
 			path: "/login",
 			element: <Login />,
 			errorElement: <ErrorPage />,
-			children: [],
 		},
 	]);
 

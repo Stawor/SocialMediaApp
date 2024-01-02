@@ -5,12 +5,21 @@ import ButtonLikePosts from "./ui/ButtonLikePost";
 import { UserContext } from "../contexts/user-context";
 import CommentPostInput from "./ui/CommentPostInput";
 import Comments from "./Comments";
+import Skeleton from "@mui/material/Skeleton";
 
-export default function PostDisplay({ posts, setPostUpdate }) {
+export default function PostDisplay({ posts, setUpdatePosts }) {
 	const { user } = useContext(UserContext);
 
+	if (!user || !posts) {
+		return (
+			<div className="">
+				<Skeleton variant="rounded" width={480} height={240} />
+			</div>
+		);
+	}
+
 	return (
-		<div className=" max-w-2xl flex flex-col gap-8 lg:w-4/5 w-full ">
+		<div className=" max-w-2xl flex flex-col gap-4 lg:w-4/5 w-full bg-slate-50 dark:bg-slate-800">
 			{posts.map((post) => (
 				<div
 					key={post._id}
@@ -21,16 +30,15 @@ export default function PostDisplay({ posts, setPostUpdate }) {
 						<div>
 							<UserNameDisplay
 								userId={post.userId}
-								style={`flex items-center h-12 gap-2`}
-								size={50}
-								divStyle={undefined}
+								style={`flex items-center w-12 h-12 text-5xl gap-2`}
+								divStyle={`flex`}
 							/>
 						</div>
 						{post.userId == user._id && (
-							<PopoverPosts setPostUpdate={setPostUpdate} postId={post._id} />
+							<PopoverPosts postId={post._id} setUpdatePosts={setUpdatePosts} />
 						)}
 					</div>
-					<div className="bg-white">{post.desc}</div>
+					<div className="">{post.desc}</div>
 					<div className="flex items-center justify-center">
 						{post.img && <img src={post.img} width={400} alt="post image" />}
 					</div>
@@ -38,7 +46,7 @@ export default function PostDisplay({ posts, setPostUpdate }) {
 						<ButtonLikePosts post={post} />
 					</div>
 					<div>
-						<CommentPostInput post={post} setPostUpdate={setPostUpdate} />
+						<CommentPostInput post={post} setUpdatePosts={setUpdatePosts} />
 					</div>
 					<div>
 						<Comments post={post} />
