@@ -30,7 +30,7 @@ export default function ContactPage() {
 	return (
 		<>
 			<div>
-				<Navbar />
+				<Navbar />,
 			</div>
 			<div className=" flex z-10 dark:bg-slate-900 dark:text-slate-200 min-h-screen">
 				<LeftBar />
