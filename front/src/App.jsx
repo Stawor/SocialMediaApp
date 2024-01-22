@@ -21,7 +21,7 @@ function App() {
 		return (
 			<div>
 				<NavBar />
-				<div className=" flex justify-center items-center dark:bg-slate-900 dark:text-slate-300">
+				<div className=" flex justify-center items-center bg-slate-100 dark:bg-slate-900 dark:text-slate-300">
 					<div className="flex w-full justify-center">
 						<SideBar />
 						<Outlet />

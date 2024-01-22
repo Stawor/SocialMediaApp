@@ -40,7 +40,7 @@ export default function Comments({ post }) {
 						/>
 						<div className="flex mx-3">
 							<hr
-								className={`w-10 border-slate-300 border-dashed border-r h-5 rotate-180 dark:border-slate-700 `}
+								className={`w-10 border-slate-300 border-dashed border-r h-5 rotate-180 transform translate-x-1.5 dark:border-slate-700 `}
 							/>
 							<div className=" bg-slate-200 w-fit rounded-xl px-2 py-1 dark:bg-black">
 								{comment.comment}

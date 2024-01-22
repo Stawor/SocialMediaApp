@@ -8,7 +8,22 @@ import NavBar from "../components/NavBar";
 import PopoverSuggestedContacts from "../components/ui/PopoverSuggestedContacts";
 import Skeleton from "@mui/material/Skeleton";
 
-export default function ContactPage() {
+function ContactCard({ contact, PopoverComponent }) {
+	return (
+		<div className="border w-48 h-48 flex justify-center items-center relative bg-white">
+			<UserNameDisplay
+				userId={contact.userId}
+				style={` h-24 w-24 text-8xl`}
+				divStyle={`flex flex-col `}
+			/>
+			<div className="absolute top-2 right-0">
+				<PopoverComponent userId={contact.userId} />
+			</div>
+		</div>
+	);
+}
+
+export default function ContactPage(ContactCard) {
 	const { suggestContacts, contacts } = useContext(ContactsContext);
 	const { user } = useContext(UserContext);
 
@@ -32,10 +47,10 @@ export default function ContactPage() {
 			<div>
 				<NavBar />
 			</div>
-			<div className=" flex z-10 dark:bg-slate-900 dark:text-slate-200 min-h-screen">
+			<div className=" flex z-10 bg-slate-100 dark:bg-slate-900 dark:text-slate-200 min-h-screen">
 				<LeftBar />
 				<div>
-					<div className=" text-center text-slate-400 m-10 text-2xl">
+					<div className=" text-center  m-10 text-2xl">
 						<h1>Contacts</h1>
 					</div>
 					<div className=" flex gap-6 flex-wrap justify-center lg:justify-start lg:m-10">
@@ -43,7 +58,7 @@ export default function ContactPage() {
 							return (
 								<div
 									key={index}
-									className="border w-48 h-48 flex justify-center items-center relative"
+									className="border w-48 h-48 flex justify-center items-center relative text-black bg-white dark:bg-slate-800 dark:text-slate-200"
 								>
 									<UserNameDisplay
 										userId={contact}
@@ -57,7 +72,7 @@ export default function ContactPage() {
 							);
 						})}
 					</div>
-					<div className=" text-center text-slate-400 m-10 text-2xl">
+					<div className=" text-center m-10 text-2xl">
 						<h1>Suggested Contacts</h1>
 					</div>
 					<div className="flex justify-center">
@@ -66,7 +81,7 @@ export default function ContactPage() {
 								return (
 									<div
 										key={index}
-										className="border w-48 h-48 flex justify-center items-center relative"
+										className="border w-48 h-48 flex justify-center items-center relative text-black bg-white dark:bg-slate-800 dark:text-slate-200"
 									>
 										<UserNameDisplay
 											userId={contact.userId}

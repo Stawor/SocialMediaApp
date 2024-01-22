@@ -103,7 +103,7 @@ export default function SharePosts({ setUpdatePosts }) {
 		<form
 			onSubmit={handleSubmit}
 			id="post"
-			className="border bg-slate-50 flex flex-col p-4 gap-8 mt-10 text-lg rounded-lg mb-8 max-w-2xl lg:w-4/5 w-full dark:bg-slate-800"
+			className="border bg-white flex flex-col p-4 gap-8 mt-10 text-lg rounded-lg mb-8 max-w-2xl lg:w-4/5 w-full dark:bg-slate-800"
 		>
 			<label htmlFor="post">
 				<div className=" text-3xl mb-4 flex items-center">

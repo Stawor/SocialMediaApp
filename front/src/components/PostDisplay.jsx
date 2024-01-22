@@ -17,40 +17,51 @@ export default function PostDisplay({ posts, setUpdatePosts }) {
 			</div>
 		);
 	}
-
+	console.log(posts.length);
 	return (
-		<div className=" max-w-2xl flex flex-col gap-4 lg:w-4/5 w-full bg-slate-50 dark:bg-slate-800">
+		<div className=" max-w-2xl flex flex-col gap-4 lg:w-4/5 w-full  ">
 			{posts.map((post) => (
 				<div
 					key={post._id}
 					id="post"
-					className="border flex flex-col p-4 gap-8 text-lg rounded-lg"
+					className="border flex flex-col p-4 gap-8 text-lg rounded-lg bg-white dark:bg-slate-800"
 				>
-					<div className=" flex gap-2 items-center text-2xl justify-between relative">
-						<div>
-							<UserNameDisplay
-								userId={post.userId}
-								style={`flex items-center w-12 h-12 text-5xl gap-2`}
-								divStyle={`flex`}
-							/>
-						</div>
-						{post.userId == user._id && (
-							<PopoverPosts postId={post._id} setUpdatePosts={setUpdatePosts} />
-						)}
-					</div>
-					<div className="">{post.desc}</div>
-					<div className="flex items-center justify-center">
-						{post.img && <img src={post.img} width={400} alt="post image" />}
-					</div>
-					<div className="border-t flex justify-between">
-						<ButtonLikePosts post={post} />
-					</div>
-					<div>
-						<CommentPostInput post={post} setUpdatePosts={setUpdatePosts} />
-					</div>
-					<div>
-						<Comments post={post} />
-					</div>
+					{posts.length == 0 ? (
+						<div className=" w-40 h-52">No posts yet</div>
+					) : (
+						<>
+							<div className=" flex gap-2 items-center text-2xl justify-between relative">
+								<div>
+									<UserNameDisplay
+										userId={post.userId}
+										style={`flex items-center w-12 h-12 text-5xl gap-2`}
+										divStyle={`flex`}
+									/>
+								</div>
+								{post.userId == user._id && (
+									<PopoverPosts
+										postId={post._id}
+										setUpdatePosts={setUpdatePosts}
+									/>
+								)}
+							</div>
+							<div className="">{post.desc}</div>
+							<div className="flex items-center justify-center">
+								{post.img && (
+									<img src={post.img} width={400} alt="post image" />
+								)}
+							</div>
+							<div className="border-t flex justify-between">
+								<ButtonLikePosts post={post} />
+							</div>
+							<div>
+								<CommentPostInput post={post} setUpdatePosts={setUpdatePosts} />
+							</div>
+							<div>
+								<Comments post={post} />
+							</div>
+						</>
+					)}
 				</div>
 			))}
 		</div>
