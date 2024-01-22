@@ -37,6 +37,7 @@ export default function ContactPage(ContactCard) {
 					<Skeleton variant="rounded" width={100} height={100} />
 					<Skeleton variant="rounded" width={100} height={100} />
 					<Skeleton variant="rounded" width={100} height={100} />
+					<Skeleton variant="rounded" width={100} height={100} />
 				</div>
 			</div>
 		);
