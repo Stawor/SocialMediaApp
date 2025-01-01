@@ -15,7 +15,7 @@ export default function Posts() {
 	async function getPosts() {
 		if (posts) {
 			const response = await axios.get(
-				`https://social-backend-main2.vercel.app/${user._id}`,
+				`https://social-backend-main2.vercel.app/api/posts/${user._id}`,
 				{ headers: { Authorization: `Bearer ${tokenCookie}` } }
 			);
 			setPosts(response.data.userPosts);

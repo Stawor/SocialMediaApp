@@ -11,7 +11,7 @@ export default function CommentPostInput({ post, setUpdatePosts }) {
 		e.preventDefault();
 		try {
 			await axios.put(
-				`https://social-backend-main2.vercel.app/${post._id}/${user._id}`,
+				`https://social-backend-main2.vercel.app/api/posts/${post._id}/${user._id}`,
 				{
 					comment: comment,
 				}

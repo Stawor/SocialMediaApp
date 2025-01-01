@@ -10,7 +10,7 @@ export default function ButtonLikePosts({ post }) {
 
 	const handleLikeClick = async () => {
 		const response = await axios.put(
-			`https://social-backend-main2.vercel.app/${post._id}/like`,
+			`https://social-backend-main2.vercel.app/api/posts/${post._id}/like`,
 			{
 				userId: user._id,
 			}

@@ -12,7 +12,7 @@ export default function PopoverPosts({ postId, setUpdatePosts }) {
 	const handleClick = async () => {
 		try {
 			await axios.delete(
-				`https://social-backend-main2.vercel.app/${postId}/${user._id}`
+				`https://social-backend-main2.vercel.app/api/posts/${postId}/${user._id}`
 			);
 		} catch (err) {
 			setError(err.response.data);

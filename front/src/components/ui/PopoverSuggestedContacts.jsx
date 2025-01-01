@@ -12,7 +12,7 @@ export default function PopoverSuggestedContacts({ userId }) {
 
 	const handleClick = async () => {
 		await axios.put(
-			`https://social-backend-main2.vercel.app/${userId}/follow`,
+			`https://social-backend-main2.vercel.app/api/users/${userId}/follow`,
 			{
 				id: user._id,
 			}
