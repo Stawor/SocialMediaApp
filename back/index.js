@@ -13,14 +13,14 @@ const port = process.env.PORT || 3000;
 
 mongoose.set("strictQuery", false);
 
-const mongoDB = process.env.MONGO_URL;
+const mongoDB =
+	"mongodb+srv://Stawor:aFwA1IaqfW8bbRKf@cluster0.5vbz39h.mongodb.net/?retryWrites=true&w=majority";
 
 main().catch((err) => console.log(err));
 
 async function main() {
 	await mongoose.connect(mongoDB);
 }
-
 //middleware
 app.use(express.json());
 app.use(helmet());
