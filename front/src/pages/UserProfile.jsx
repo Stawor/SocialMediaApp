@@ -18,7 +18,7 @@ export default function UserPosts() {
 
 	async function getPosts() {
 		const response = await axios.get(
-			`https://socialmediaapp-production.up.railway.app/api/posts/timeline/${userId}`,
+			`https://social-backend-main2.vercel.app/api/posts/timeline/${userId}`,
 			{ headers: { authorization: `Bearer ${TokenCookie}` } }
 		);
 		setPosts(response.data.userPosts);

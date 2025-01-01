@@ -15,7 +15,7 @@ export default function UserNameDisplay({ userId, style, divStyle }) {
 		if (userId) {
 			const getData = async () => {
 				const response = await axios.get(
-					`https://socialmediaapp-production.up.railway.app/api/users/${userId}`,
+					`https://social-backend-main2.vercel.app/api/users/${userId}`,
 					{ headers: { Authorization: `Bearer ${TokenCookie}` } }
 				);
 				setUsername(response.data.username);

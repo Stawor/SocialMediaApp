@@ -12,7 +12,7 @@ export default function PopoverContacts({ userId }) {
 
 	const handleClick = async () => {
 		await axios.put(
-			`https://socialmediaapp-production.up.railway.app/api/users/${userId}/unfollow`,
+			`https://social-backend-main2.vercel.app/${userId}/unfollow`,
 			{
 				id: user._id,
 			}

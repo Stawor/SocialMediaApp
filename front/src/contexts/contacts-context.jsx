@@ -17,7 +17,7 @@ export const ContactsContextProvider = ({ children }) => {
 		if (user) {
 			try {
 				const response = await axios.get(
-					`https://socialmediaapp-production.up.railway.app/api/users/followers/${user._id}`,
+					`https://social-backend-main2.vercel.app/api/users/followers/${user._id}`,
 					{ headers: { Authorization: `Bearer ${tokenCookie}` } }
 				);
 				setContacts(response.data.followins);
@@ -29,7 +29,7 @@ export const ContactsContextProvider = ({ children }) => {
 	const getSuggestedContacts = async () => {
 		if (user) {
 			const response = await axios.get(
-				`https://socialmediaapp-production.up.railway.app/api/users/all/${user._id}`,
+				`https://social-backend-main2.vercel.app/api/users/all/${user._id}`,
 				{
 					id: user._id,
 					headers: { Authorization: `Bearer ${tokenCookie}` },

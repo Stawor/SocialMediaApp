@@ -77,14 +77,11 @@ export default function SharePosts({ setUpdatePosts }) {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			await axios.post(
-				`https://socialmediaapp-production.up.railway.app/api/posts`,
-				{
-					userId: user._id,
-					desc: desc,
-					img: downloadUrl,
-				}
-			);
+			await axios.post(`https://social-backend-main2.vercel.app/api/posts`, {
+				userId: user._id,
+				desc: desc,
+				img: downloadUrl,
+			});
 			setUpdatePosts((prev) => prev + 1);
 			setDesc("");
 		} catch (err) {

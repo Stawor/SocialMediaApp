@@ -20,7 +20,7 @@ export default function Login() {
 		e.preventDefault();
 		try {
 			const response = await axios.post(
-				`https://socialmediaapp-production.up.railway.app/api/auth/login`,
+				`https://social-backend-main2.vercel.app/api/auth/login`,
 				{
 					username: formData.username,
 					email: formData.email,

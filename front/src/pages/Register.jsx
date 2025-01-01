@@ -14,7 +14,7 @@ export default function Register() {
 		e.preventDefault();
 		try {
 			const response = await axios.post(
-				`https://socialmediaapp-production.up.railway.app/api/auth/register`,
+				`https://social-backend-main2.vercel.app/api/auth/register`,
 				{
 					username: formData.username,
 					email: formData.email,

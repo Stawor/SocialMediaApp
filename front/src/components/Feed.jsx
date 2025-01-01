@@ -18,7 +18,7 @@ export default function Feed({ updatePosts, setUpdatePosts }) {
 	async function getFeed() {
 		if (user) {
 			const response = await axios.get(
-				`https://socialmediaapp-production.up.railway.app/api/posts/timeline/all/${user._id}`,
+				`https://social-backend-main2.vercel.app/api/posts/timeline/all/${user._id}`,
 				{ headers: { Authorization: `Bearer ${TokenCookie}` } }
 			);
 
